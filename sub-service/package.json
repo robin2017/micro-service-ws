@@ -5,10 +5,17 @@
   "micro-service-modules": [
     {
       "module":"HelloModule",
-      "name": "robin",
+      "name": "hello",
       "entry":"Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
+    },
+    {
+      "module":"robinModule",
+      "name": "robin",
+      "entry":"Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块2"
     }
   ],
   "scripts": {
