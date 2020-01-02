@@ -2,10 +2,19 @@
   "name": "sub-service",
   "version": "0.1.0",
   "private": true,
+  "micro-service-modules": [
+    {
+      "module":"HelloModule",
+      "name": "robin",
+      "version": "0.0.1",
+      "description": "测试模块"
+    }
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build.ws":"node build/index.js"
   },
   "dependencies": {
     "core-js": "^3.4.4",
