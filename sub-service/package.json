@@ -4,25 +4,18 @@
   "private": true,
   "micro-service-modules": [
     {
-      "module":"HelloModule",
+      "module": "HelloModule",
       "name": "hello",
-      "entry":"Index.vue",
+      "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
-    },
-    {
-      "module":"robinModule",
-      "name": "robin",
-      "entry":"Index.vue",
-      "version": "0.0.1",
-      "description": "测试模块2"
     }
   ],
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "cross-env NODE_ENV=development vue-cli-service serve",
+    "build": "cross-env NODE_ENV=production TARGET=app vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build.ws":"node build/index.js"
+    "build.ws": "cross-env TARGET=wc node build/index.js"
   },
   "dependencies": {
     "core-js": "^3.4.4",
@@ -33,6 +26,7 @@
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "babel-eslint": "^10.0.3",
+    "cross-env": "^6.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.6.10"

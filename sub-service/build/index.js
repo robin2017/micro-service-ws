@@ -38,15 +38,15 @@ rimraf(path.resolve(__dirname, '../packages'), async function (err) {
         console.log(`模块[${module}]构建成功！`)
     }
     console.log('全部模块构建完成!!!')
-})
-;
+});
 
 function childProcessSync(cmd) {
     return new Promise((resolve) => {
-        child_process.exec(cmd, function (err) {
+        child_process.exec(cmd, function (err,data) {
             if (err) {
                 return resolve(err);
             }
+            console.log(data)
             resolve()
         });
     })
