@@ -5,6 +5,7 @@ const path = require('path');
 const child_process = require('child_process');
 const rimraf = require('rimraf');
 const fs = require('fs');
+const projectConf = require('../config')
 //获取package.json中信息
 const msModules = require(path.resolve(__dirname, '../package.json'))['micro-service-modules'];
 if (!msModules instanceof Array) {
@@ -31,7 +32,7 @@ rimraf(path.resolve(__dirname, '../packages'), async function (err) {
             console.error('不存在入口文件：', entry);
             return;
         }
-        const cmd = `vue-cli-service build --dest packages/${module} --target wc --name ms-${name} src/modules/${module}/Index.vue`;
+        const cmd = `vue-cli-service build --dest ${projectConf.packageName}/${module} --target ${projectConf.target} --name ${projectConf.target==='wc'?'ms-wc-':'ms_lib_'}${name} src/modules/${module}/Index.vue`;
         console.log('构建:', cmd);
         let err = await childProcessSync(cmd);
         if (err) console.error(err);

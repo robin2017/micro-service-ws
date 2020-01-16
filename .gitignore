@@ -2,6 +2,8 @@
 node_modules
 */dist/
 packages
+packages_lib
+packages_wc
 
 # local env files
 .env.local
