@@ -32,7 +32,7 @@ rimraf(path.resolve(__dirname, '../packages'), async function (err) {
             console.error('不存在入口文件：', entry);
             return;
         }
-        const cmd = `vue-cli-service build --dest ${projectConf.packageName}/${module} --target ${projectConf.target} --name ${projectConf.target==='wc'?'ms-wc-':'ms_lib_'}${name} src/modules/${module}/Index.vue`;
+        const cmd = `vue-cli-service build --dest ${projectConf.packageName}/${module} --target ${projectConf.target} --name ${projectConf.target==='wc'?'ms-wc-':'ms_lib_'}${name} ${entry}`;
         console.log('构建:', cmd);
         let err = await childProcessSync(cmd);
         if (err) console.error(err);

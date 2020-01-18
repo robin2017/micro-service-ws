@@ -21,20 +21,20 @@ const vueConf = {
             //         root:'Vue'
             //     }
             // }
-            config.optimization = {
-                splitChunks: {
-                    cacheGroups: {
-                        vue: {
-                            name: "chunk-vue",
-                            test: /[\\/]node_modules[\\/]vue[\\/]/,
-                            chunks: "initial",
-                            priority: 3,
-                            reuseExistingChunk: true,
-                            enforce: true
-                        }
-                    }
-                }
-            }
+            // config.optimization = {
+            //     splitChunks: {
+            //         cacheGroups: {
+            //             vue: {
+            //                 name: "chunk-vue",
+            //                 test: /[\\/]node_modules[\\/]vue[\\/]/,
+            //                 chunks: "initial",
+            //                 priority: 3,
+            //                 reuseExistingChunk: true,
+            //                 enforce: true
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 };
