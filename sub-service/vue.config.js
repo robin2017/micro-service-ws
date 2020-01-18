@@ -18,25 +18,25 @@ const vueConf = {
                 htmlWebpackPlugin.options.template = path.resolve(__dirname,
                     `./public/index-${projectConf.target}.html`)
             }
-            config.externals = {
-                'vue': {
-                    commonjs: 'vue',
-                    commonjs2: 'vue',
-                    umd: 'vue',
-                    root: 'Vue'
-                }
-            }
+            // config.externals = {
+            //     'vue': {
+            //         commonjs: 'vue',
+            //         commonjs2: 'vue',
+            //         umd: 'vue',
+            //         root: 'Vue'
+            //     }
+            // }
             config.optimization = {
                 splitChunks: {
                     cacheGroups: {
-                        vue: {
-                            name: "chunk-vue",
-                            test: /[\\/]node_modules[\\/]vue[\\/]/,
-                            chunks: "initial",
-                            priority: 3,
-                            reuseExistingChunk: true,
-                            enforce: true
-                        },
+                        // vue: {
+                        //     name: "chunk-vue",
+                        //     test: /[\\/]node_modules[\\/]vue[\\/]/,
+                        //     chunks: "initial",
+                        //     priority: 3,
+                        //     reuseExistingChunk: true,
+                        //     enforce: true
+                        // },
                         // elementUi: {
                         //     name: "chunk-element-ui",
                         //     test: /[\\/]node_modules[\\/]element-ui[\\/]/,
