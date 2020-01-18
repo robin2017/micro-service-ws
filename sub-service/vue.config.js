@@ -1,11 +1,16 @@
 const path = require('path');
 const projectConf = require('./config')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 console.log('现在环境：', process.env.NODE_ENV);
 console.log('现在目标:', process.env.TARGET);
 const vueConf = {
     configureWebpack: config => {
         if (projectConf.target === 'wc' || projectConf.target === 'lib') {
+            config.plugins.push(new CopyWebpackPlugin([{
+                from:path.resolve(__dirname,'./public/lib'),
+                to:path.resolve(__dirname,projectConf.packageName,'./lib')
+            }]));
             let htmlWebpackPlugin = config.plugins.find(item => {
                 return item instanceof HtmlWebpackPlugin
             });

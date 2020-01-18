@@ -6,7 +6,7 @@
     {
       "module": "HelloModule",
       "name": "hello",
-      "entry": "Index.vue",
+      "entry": "ElementIndex.vue",
       "version": "0.0.1",
       "description": "测试模块"
     }
