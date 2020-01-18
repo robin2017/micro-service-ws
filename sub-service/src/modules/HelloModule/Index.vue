@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     export default {
         name: "Index",
         props: {},
@@ -15,6 +16,9 @@
         watch: {},
         methods: {},
         mounted() {
+            Vue.$nextTick(()=>{
+                console.log('test')
+            })
         }
     }
 </script>
@@ -23,3 +27,5 @@
     .Index {
     }
 </style>
+
+
