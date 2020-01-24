@@ -6,10 +6,10 @@
 </template>
 
 <script>
-    import Vue from 'vue';
-    import ElementUI from 'element-ui';
-    import 'element-ui/lib/theme-chalk/index.css';
-    Vue.use(ElementUI);
+    // import Vue from 'vue';
+    // import ElementUI from 'element-ui';
+    // import 'element-ui/lib/theme-chalk/index.css';
+    // Vue.use(ElementUI);
 
     export default {
         name: "Index",
@@ -27,7 +27,8 @@
 </script>
 
 <style>
-    .Index {
+    .Index h1 {
+     color:red;
     }
 </style>
 
