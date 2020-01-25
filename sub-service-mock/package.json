@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "hs -p 1234"
+    "serve1": "hs ./serve1 -p 8001",
+    "serve2": "hs ./serve2 -p 8002",
+    "serve:all": "npm run serve1 & npm run serve2"
   },
   "author": "",
   "license": "ISC",

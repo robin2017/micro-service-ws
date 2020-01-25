@@ -36,8 +36,8 @@
     "serve": "cross-env NODE_ENV=development vue-cli-service serve",
     "build": "cross-env NODE_ENV=production TARGET=app vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build.ws": "cross-env TARGET=wc node build/index.js",
-    "build.lib": "cross-env TARGET=lib node build/index.js"
+    "build.ws": "cross-env NODE_ENV=production TARGET=wc node build/index.js",
+    "build.lib": "cross-env NODE_ENV=production TARGET=lib node build/index.js"
   },
   "dependencies": {
     "core-js": "^3.4.4",
