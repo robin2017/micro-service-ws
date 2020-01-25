@@ -2,9 +2,26 @@ const path = require('path');
 const projectConf = require('./config')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const resolve = dir => path.join(__dirname, dir);
 console.log('现在环境：', process.env.NODE_ENV);
 console.log('现在目标:', process.env.TARGET);
 const vueConf = {
+    devServer: {
+        open: true, // 是否打开浏览器
+        host: "0.0.0.0",
+        proxy: {
+            "/rest": {
+                target: "http://localhost:12808/ZHTEST", // 目标代理接口地址
+                secure: false,
+                changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
+            }
+        }
+    },
+    chainWebpack: config => {
+        config.resolve.alias
+            .set("@", resolve("src"))
+            .set("@http", resolve("src/http"))
+    },
     configureWebpack: config => {
         if (projectConf.target === 'wc' || projectConf.target === 'lib') {
             config.plugins.push(new CopyWebpackPlugin([{
