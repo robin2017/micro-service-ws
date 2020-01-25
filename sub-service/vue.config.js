@@ -6,6 +6,7 @@ const resolve = dir => path.join(__dirname, dir);
 console.log('现在环境：', process.env.NODE_ENV);
 console.log('现在目标:', process.env.TARGET);
 const vueConf = {
+    publicPath:'./',
     devServer: {
         open: true, // 是否打开浏览器
         host: "0.0.0.0",
@@ -21,6 +22,7 @@ const vueConf = {
         config.resolve.alias
             .set("@", resolve("src"))
             .set("@http", resolve("src/http"))
+            .set("@m", resolve("src/modules"))
     },
     configureWebpack: config => {
         if (projectConf.target === 'wc' || projectConf.target === 'lib') {
@@ -33,7 +35,8 @@ const vueConf = {
             });
             if (htmlWebpackPlugin) {
                 htmlWebpackPlugin.options.template = path.resolve(__dirname,
-                    `./public/index-${projectConf.target}.html`)
+                    `./public/index-${projectConf.target}.html`);
+                htmlWebpackPlugin.options.filename = "index.html"
             }
             // config.externals = {
             //     'vue': {
