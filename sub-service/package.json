@@ -4,9 +4,9 @@
   "private": true,
   "micro-service-modules": [
     {
-      "module": "HelloModule",
+      "module": "HelloDemo",
       "name": "hello",
-      "entry": "ElementIndex.vue",
+      "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
     }

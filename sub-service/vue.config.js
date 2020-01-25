@@ -26,6 +26,8 @@ const vueConf = {
     },
     configureWebpack: config => {
         config.externals = {
+            'vue': 'Vue',
+            "element-ui": "ELEMENT",
             axios: "axios"
         };
         if (projectConf.target === 'wc' || projectConf.target === 'lib') {

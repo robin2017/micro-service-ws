@@ -2,7 +2,7 @@
     <test></test>
 </template>
 <script>
-    import Test from '@m/HelloModule/ElementIndex.vue'
+    import Test from '@m/HelloDemo/Index.vue'
     export default {
         name: 'app',
         components: {
