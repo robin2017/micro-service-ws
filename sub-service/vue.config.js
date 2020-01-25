@@ -6,7 +6,7 @@ const resolve = dir => path.join(__dirname, dir);
 console.log('现在环境：', process.env.NODE_ENV);
 console.log('现在目标:', process.env.TARGET);
 const vueConf = {
-    publicPath:'./',
+    publicPath: './',
     devServer: {
         open: true, // 是否打开浏览器
         host: "0.0.0.0",
@@ -25,6 +25,9 @@ const vueConf = {
             .set("@m", resolve("src/modules"))
     },
     configureWebpack: config => {
+        config.externals = {
+            axios: "axios"
+        };
         if (projectConf.target === 'wc' || projectConf.target === 'lib') {
             config.plugins.push(new CopyWebpackPlugin([{
                 from: path.resolve(__dirname, './public/lib'),
