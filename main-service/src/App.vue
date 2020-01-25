@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-   <hello-main></hello-main>
+   <show-all></show-all>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import HelloMain from './components/Main.vue'
+import ShowAll from './components/ShowAll.vue'
 export default {
   name: 'app',
   components: {
-    HelloMain
+      ShowAll
   }
 }
 </script>

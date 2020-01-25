@@ -74,7 +74,7 @@
                         });
                     }
                 }
-                console.log('计算结果：', list);
+                console.log('计算结果：', JSON.stringify(list));
                 this.microServiceList = list;
             }
         },

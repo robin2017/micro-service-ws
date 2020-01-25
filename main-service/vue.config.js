@@ -20,4 +20,11 @@ module.exports = {
             .set("@", resolve("src"))
             .set("@http", resolve("src/http"))
     },
+    configureWebpack: config => {
+        config.externals = {
+            'vue': 'Vue',
+            "element-ui": "ELEMENT",
+            axios: "axios"
+        };
+    }
 }

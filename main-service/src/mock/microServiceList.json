@@ -1,0 +1,22 @@
+[
+  {
+    "serviceName": "sub-service-1",
+    "microServiceName": "table",
+    "microServiceURL": "http://localhost:8001/packages_wc/TableDemo/ms-wc-table.js"
+  },
+  {
+    "serviceName": "sub-service-1",
+    "microServiceName": "tree",
+    "microServiceURL": "http://localhost:8001/packages_wc/TreeDemo/ms-wc-tree.js"
+  },
+  {
+    "serviceName": "sub-service-2",
+    "microServiceName": "hello",
+    "microServiceURL": "http://localhost:8002/packages_wc/HelloDemo/ms-wc-hello.js"
+  },
+  {
+    "serviceName": "sub-service-2",
+    "microServiceName": "collapse",
+    "microServiceURL": "http://localhost:8002/packages_wc/CollapseDemo/ms-wc-collapse.js"
+  }
+]
