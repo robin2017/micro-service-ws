@@ -1,0 +1,14 @@
+{
+  "name": "sub-service-mock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "hs -p 1234"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "http-serve": "^1.0.1"
+  }
+}
