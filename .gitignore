@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 */dist/
+main-service-test
 packages
 packages_lib
 packages_wc

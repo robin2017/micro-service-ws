@@ -33,7 +33,8 @@ rimraf(path.resolve(__dirname, `../${projectConf.packageName}`), async function 
             console.error('不存在入口文件：', entry);
             return;
         }
-        const cmd = `vue-cli-service build --dest ${projectConf.packageName}/${module} --target ${projectConf.target} --name ${projectConf.target === 'wc' ? 'ms-wc-' : 'ms_lib_'}${name} ${entry}`;
+        const cmd = `vue-cli-service build --dest ${projectConf.packageName}/${module} --target ${projectConf.target}`
+            + ` --name ${projectConf.target === 'wc' ? 'ms-wc-' : 'ms_lib_'}${name} ${entry}`;
         console.log('构建:', cmd);
         let err = await childProcessSync(cmd);
         if (err) console.error(err);
@@ -44,8 +45,8 @@ rimraf(path.resolve(__dirname, `../${projectConf.packageName}`), async function 
         name: pkgObj.name,
         'micro-service-modules': pkgObj['micro-service-modules']
     };
-    const newPkgPath = path.resolve(__dirname,'../', projectConf.packageName, "./package.json");
-    fs.writeFileSync(newPkgPath, JSON.stringify(newPkg,null,'\t'));
+    const newPkgPath = path.resolve(__dirname, '../', projectConf.packageName, "./package.json");
+    fs.writeFileSync(newPkgPath, JSON.stringify(newPkg, null, '\t'));
     console.log('全部模块构建完成!!!')
 });
 
