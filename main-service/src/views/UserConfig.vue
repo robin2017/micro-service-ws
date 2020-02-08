@@ -47,33 +47,41 @@
         },
         methods: {
             ...mapMutations({
-                setModuleList: 'setModuleList'
+                setModuleList: 'setModuleList',
+                setModuleGroup: 'setModuleGroup'
             }),
             async getModuleList() {
                 const serviceList = await httpUtils.getServiceList();
                 console.log('子服务地址为：', serviceList);
                 let pkgs = [];
-                let moduleList = []
+                let moduleList = [];
+                let moduleGroup = [];
                 for (let i = 0; i < serviceList.length; i++) {
                     let pkg = await httpUtils.getServiceInfo(serviceList[i]).catch(err => {
                         console.log('获取子服务信息失败：', err);
                         return "error"
                     });
                     pkgs.push(pkg);
+
                     if (typeof pkg !== 'string') {
                         let bizName = pkg.name;
+                        let groupList = [];
                         for (let j = 0; j < pkg['micro-service-modules'].length; j++) {
                             let moduleName = pkg['micro-service-modules'][j].name;
                             let moduleVersion = pkg['micro-service-modules'][j].version;
                             let folderName = pkg['micro-service-modules'][j].module;
                             let moduleUrl = `http://${serviceList[i]}/packages_wc/${folderName}/ms-wc-${moduleName}.js`;
-                            moduleList.push({bizName, moduleName, moduleUrl, moduleVersion})
+                            moduleList.push({bizName, moduleName, moduleUrl, moduleVersion});
+                            groupList.push({moduleName, moduleUrl, moduleVersion})
                         }
+                        moduleGroup.push({bizName, groupList})
                     }
                 }
                 console.log('获取所有的pkgs：', pkgs);
                 console.log('获取所有的moduleList:', moduleList);
-                this.setModuleList(moduleList)
+                console.log('获取所有的moduleGroup:', moduleGroup);
+                this.setModuleList(moduleList);
+                this.setModuleGroup(moduleGroup);
             }
         },
         created() {
