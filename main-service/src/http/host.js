@@ -1,4 +1,4 @@
 export default {
     personList:'rest/testController/personList',
-    hello:'rest/testController/hello'
+    hello:'rest/testController/hello',
 }

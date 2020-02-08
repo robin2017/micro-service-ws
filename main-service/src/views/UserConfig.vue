@@ -30,6 +30,9 @@
     </div>
 </template>
 <script>
+    import httpUtils from '@http'
+    import {mapState, mapMutations} from 'vuex'
+
     export default {
         data() {
             return {
@@ -37,16 +40,58 @@
                 activeIndex: '/userConfig/moduleMgr'
             };
         },
+        computed: {
+            ...mapState({
+                moduleList: 'moduleList'
+            })
+        },
+        methods: {
+            ...mapMutations({
+                setModuleList: 'setModuleList'
+            }),
+            async getModuleList() {
+                const serviceList = await httpUtils.getServiceList();
+                console.log('子服务地址为：', serviceList);
+                let pkgs = [];
+                let moduleList = []
+                for (let i = 0; i < serviceList.length; i++) {
+                    let pkg = await httpUtils.getServiceInfo(serviceList[i]).catch(err => {
+                        console.log('获取子服务信息失败：', err);
+                        return "error"
+                    });
+                    pkgs.push(pkg);
+                    if (typeof pkg !== 'string') {
+                        let bizName = pkg.name;
+                        for (let j = 0; j < pkg['micro-service-modules'].length; j++) {
+                            let moduleName = pkg['micro-service-modules'][j].name;
+                            let moduleVersion = pkg['micro-service-modules'][j].version;
+                            let folderName = pkg['micro-service-modules'][j].module;
+                            let moduleUrl = `http://${serviceList[i]}/packages_wc/${folderName}/ms-wc-${moduleName}.js`;
+                            moduleList.push({bizName, moduleName, moduleUrl, moduleVersion})
+                        }
+                    }
+                }
+                console.log('获取所有的pkgs：', pkgs);
+                console.log('获取所有的moduleList:', moduleList);
+                this.setModuleList(moduleList)
+            }
+        },
+        created() {
+            this.getModuleList();
+        },
         mounted() {
             //模拟vue-router中redirect效果
-            this.$router.push({path: this.activeIndex})
+            this.$router.push({path: this.activeIndex}).catch(err => {
+                console.log('输出报错：', err)
+            });
+
         }
     }
 </script>
 <style scoped lang="less">
     .user-config {
         & > .header {
-            min-width: 550px;
+            min-width: 650px;
             background-color: #545c64;
             height: 48px;
             display: flex;

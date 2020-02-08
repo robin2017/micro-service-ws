@@ -1,12 +1,4 @@
 [
-  {
-    "name": "mock-service1",
-    "ipPort": "localhost:8001",
-    "path": "packages_wc"
-  },
-  {
-    "name": "mock-service2",
-    "ipPort": "localhost:8002",
-    "path": "packages_wc"
-  }
+  "localhost:8001",
+  "localhost:8002"
 ]
