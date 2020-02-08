@@ -1,5 +1,5 @@
 <template>
-    <h1>templateMgr</h1>
+    <div>模版管理</div>
 </template>
 
 <script>

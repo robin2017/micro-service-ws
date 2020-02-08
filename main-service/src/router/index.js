@@ -14,18 +14,7 @@ export const routes = [
         name: 'Index',
         component: Index
     },
-    {
-        path: '/moduleMgr',
-        name: 'ModuleMgr',
-        component: ModuleMgr,
-        label: '模块管理'
-    },
-    {
-        path: '/templateMgr',
-        name: 'TemplateMgr',
-        component: TemplateMgr,
-        label: '模版管理'
-    },
+
     {
         path: '/userDisplay',
         name: 'UserDisplay',
@@ -36,7 +25,21 @@ export const routes = [
         path: '/userConfig',
         name: 'UserConfig',
         component: UserConfig,
-        label: '用户配置'
+        label: '用户配置',
+        children: [
+            {
+                path: 'moduleMgr',
+                name: 'ModuleMgr',
+                component: ModuleMgr,
+                label: '模块管理'
+            },
+            {
+                path: 'templateMgr',
+                name: 'TemplateMgr',
+                component: TemplateMgr,
+                label: '模版管理'
+            },
+        ]
     }
 ]
 
