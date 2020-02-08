@@ -4,6 +4,7 @@ import Index from '../views/Index.vue'
 import ModuleMgr from '../views/ModuleMgr'
 import TemplateMgr from "../views/TemplateMgr";
 import UserDisplay from "../views/UserDisplay";
+import UserConfig from "../views/UserConfig";
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,12 @@ export const routes = [
         name: 'UserDisplay',
         component: UserDisplay,
         label: '用户展示'
+    },
+    {
+        path: '/userConfig',
+        name: 'UserConfig',
+        component: UserConfig,
+        label: '用户配置'
     }
 ]
 
