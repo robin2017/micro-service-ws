@@ -1,9 +1,13 @@
 <template>
-   <router-view></router-view>
+    <router-view></router-view>
 </template>
 <style>
-   *{
-      padding:0;
-      margin:0;
-   }
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html, body {
+        height: 100%;
+    }
 </style>

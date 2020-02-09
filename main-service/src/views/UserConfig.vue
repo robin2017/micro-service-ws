@@ -24,7 +24,7 @@
                 </el-menu-item>
             </el-menu>
         </section>
-        <section>
+        <section class="menu-body">
             <router-view></router-view>
         </section>
     </div>
@@ -98,6 +98,9 @@
 </script>
 <style scoped lang="less">
     .user-config {
+        height:100%;
+        display: flex;
+        flex-direction: column;
         & > .header {
             min-width: 650px;
             background-color: #545c64;
@@ -120,6 +123,9 @@
                 display: inline-block;
 
             }
+        }
+        & > .menu-body{
+            flex:1;
         }
     }
 </style>
