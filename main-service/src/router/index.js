@@ -5,6 +5,7 @@ import ModuleMgr from '../views/ModuleMgr'
 import TemplateMgr from "../views/TemplateMgr";
 import UserDisplay from "../views/UserDisplay";
 import UserConfig from "../views/UserConfig";
+import Test from '../views/Test'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,12 @@ export const routes = [
         name: 'UserDisplay',
         component: UserDisplay,
         label: '用户展示'
+    },
+    {
+        path: '/test',
+        name: 'Test',
+        component: Test,
+        label: '测试页面'
     },
     {
         path: '/userConfig',
