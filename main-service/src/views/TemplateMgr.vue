@@ -16,9 +16,10 @@
             </div>
             <draggable v-model="targetArray"
                        class="drag-target"
-                       group="people"
+                       group="modulelItem"
                        @start="drag=true"
-                       @end="drag=false">
+                       @add="targetAdd"
+                       @end="targetEnd">
                 <grid-layout
                         :layout.sync="layout"
                         :col-num="12"
@@ -31,13 +32,14 @@
                         :use-css-transforms="true">
                     <grid-item v-for="item in layout"
                                class="drag-grid-item"
+                               style="overflow:auto"
                                :x="item.x"
                                :y="item.y"
                                :w="item.w"
                                :h="item.h"
                                :i="item.i"
                                :key="item.i">
-                        {{item.content}}
+                        <component :is="item.compName"></component>
                         <i class="el-icon-delete" @click="deleteItem(item.i)"></i>
                     </grid-item>
                 </grid-layout>
@@ -54,19 +56,14 @@
                                   :name="index+1">
                     <draggable v-model="sourceArrayObject[group.bizName]"
                                class="drag-source"
-                               group="people"
-                               @start="drag=true"
+                               group="modulelItem"
+                               @start="sourceDrag"
                                @end="drag=false">
                         <div v-for="element in sourceArrayObject[group.bizName]"
                              :key="element.i"
                              class="drag-item">
                             {{element.content}}
                         </div>
-                        <!--                        <div v-for="(module ,ind) in group.groupList"-->
-                        <!--                             :key="ind"-->
-                        <!--                             class="module-item">-->
-                        <!--                            {{module.moduleName}}-->
-                        <!--                        </div>-->
                     </draggable>
                 </el-collapse-item>
             </el-collapse>
@@ -85,9 +82,10 @@
             return {
                 activeNames: 1,
                 sourceArrayObject: {},
-
                 targetArray: [],
                 layout: [],
+                mountedDom: null,
+                installedUrl:[]
             }
         },
         computed: {
@@ -103,13 +101,14 @@
                 console.log('sourceArray:', JSON.stringify(val))
             },
             targetArray(val) {
+                this.addScripts(val);
                 console.log('targetArray:', JSON.stringify(val));
                 this.layout = val;
             },
             layout: {
                 deep: true,
                 handler(val) {
-                    console.log('layout change:', JSON.stringify(val))
+                    //console.log('layout change:', JSON.stringify(val))
                     //  this.showDom.innerHTML = JSON.stringify(val, null, 2)
                 }
             }
@@ -120,6 +119,31 @@
             draggable,
         },
         methods: {
+            addScripts(list) {
+                console.log('根据列表添加脚本:', list)
+                let fragment = new DocumentFragment();
+                const urls = list.map(item => {
+                    if(!this.installedUrl.includes(item.url)){
+                        let script = document.createElement('script');
+                        script.src = item.url;
+                        fragment.appendChild(script);
+                        this.installedUrl.push(item.url)
+                    }
+                    return item.url
+                });
+                console.log('资源URL：', urls);
+                console.log('代码片段:', fragment)
+                document.body.appendChild(fragment);
+            },
+            sourceDrag() {
+                //console.log('source drag:=======>',arguments)
+            },
+            targetAdd(evt) {
+                // console.log('target add:=======>',evt)
+            },
+            targetEnd() {
+                // console.log('target end:=======>',arguments)
+            },
             deleteItem(i) {
                 const target = this.targetArray.find(item => item.i === i);
                 this.targetArray = this.targetArray.filter(item => item.i !== i);
@@ -136,7 +160,8 @@
                         ind++;
                         list.push({
                             "x": 0, "y": 0, "w": 3, "h": 2,
-                            "i": ind + "", "content": item.moduleName, "url": item.moduleUrl, "bizName": group.bizName
+                            "i": ind + "", "content": item.moduleName, "url": item.moduleUrl, "bizName": group.bizName,
+                            "compName": "ms-wc-" + item.moduleName
                         },)
                     }
                     retList[group.bizName] = list;
@@ -148,6 +173,8 @@
         mounted() {
             console.log('moduleGroup val:', this.moduleGroup);
             this.genSourceArrayObject();
+            this.mountedDom = document.querySelector('#dyn-source');
+            console.log('动态挂载节点：', this.mountedDom)
         }
     }
 </script>
@@ -199,11 +226,13 @@
         .right-card {
             width: 200px;
 
-            .module-item {
+            .drag-item {
                 background-color: lightgrey;
+                padding-left: 10px;
                 cursor: pointer;
                 margin: 3px;
             }
+
         }
     }
 </style>
