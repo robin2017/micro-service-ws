@@ -152,6 +152,33 @@
         .middle-card {
             flex: 1;
             margin: 0 10px;
+
+            .drag-target {
+                height: 100%;
+                border: 1px solid gray;
+                overflow: auto;
+
+                .drag-grid-item:hover {
+                    background-color: rgba(100, 100, 100, 0.4);
+
+                    .el-icon-delete {
+                        cursor: pointer;
+                        display: inline-block;
+                    }
+                }
+
+                .drag-grid-item {
+                    border: 1px solid red;
+                    position: relative;
+
+                    .el-icon-delete {
+                        display: none;
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                    }
+                }
+            }
         }
 
         .right-card {
@@ -168,6 +195,9 @@
 <style lang="less">
     .template-mgr {
         .el-card {
+            display: flex;
+            flex-direction: column;
+
             .el-card__header {
                 padding: 8px 20px;
 
@@ -180,6 +210,10 @@
                     padding: 3px 0;
                     cursor: pointer
                 }
+            }
+
+            .el-card__body {
+                flex: 1;
             }
         }
     }
