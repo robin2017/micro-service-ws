@@ -52,12 +52,12 @@
                                   :title="group.bizName"
                                   :key="index"
                                   :name="index+1">
-                    <draggable v-model="sourceArray"
+                    <draggable v-model="sourceArrayObject[group.bizName]"
                                class="drag-source"
                                group="people"
                                @start="drag=true"
                                @end="drag=false">
-                        <div v-for="element in sourceArray"
+                        <div v-for="element in sourceArrayObject[group.bizName]"
                              :key="element.i"
                              class="drag-item">
                             {{element.content}}
@@ -84,15 +84,8 @@
         data() {
             return {
                 activeNames: 1,
-                sourceArray: [
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "1", "content": "模块111"},
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "2", "content": "模块222"},
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "3", "content": "模块333"},
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "4", "content": "模块444"},
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "5", "content": "模块555"},
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "6", "content": "模块666"},
-                    {"x": 0, "y": 0, "w": 3, "h": 2, "i": "7", "content": "模块777"}
-                ],
+                sourceArrayObject: {},
+
                 targetArray: [],
                 layout: [],
             }
@@ -128,11 +121,33 @@
         },
         methods: {
             deleteItem(i) {
-
+                const target = this.targetArray.find(item => item.i === i);
+                this.targetArray = this.targetArray.filter(item => item.i !== i);
+                this.sourceArrayObject[target.bizName].push(target);
+            },
+            genSourceArrayObject() {
+                let retList = {};
+                let ind = 0;
+                for (let i = 0; i < this.moduleGroup.length; i++) {
+                    let group = this.moduleGroup[i];
+                    let list = [];
+                    for (let j = 0; j < group.groupList.length; j++) {
+                        let item = group.groupList[j];
+                        ind++;
+                        list.push({
+                            "x": 0, "y": 0, "w": 3, "h": 2,
+                            "i": ind + "", "content": item.moduleName, "url": item.moduleUrl, "bizName": group.bizName
+                        },)
+                    }
+                    retList[group.bizName] = list;
+                }
+                console.log('生成结果：', retList);
+                this.sourceArrayObject = retList
             }
         },
         mounted() {
-            console.log('moduleGroup val:', this.moduleGroup)
+            console.log('moduleGroup val:', this.moduleGroup);
+            this.genSourceArrayObject();
         }
     }
 </script>
