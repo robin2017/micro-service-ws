@@ -5,14 +5,26 @@
                 <h4>模版列表</h4>
                 <i class="icon-right el-icon-circle-plus-outline"></i>
             </div>
-            <div v-for="o in 4" :key="o" class="text item">
-                {{'列表内容 ' + o }}
-            </div>
+            <el-collapse v-model="templateBizs">
+                <el-collapse-item v-for="(biz,index) in templateList"
+                                  :title="biz.bizName"
+                                  :name="index+1"
+                                  :key="index">
+                    <div v-for="(temp,ind) in biz.templates"
+                         class="template-item "
+                         :class="{'selected-temp':selectedTemp===(biz.bizName+'_'+temp.tempName)}"
+                         @click="templateClick(biz.bizName,temp.tempName)"
+                         :key="ind">
+                        <h4>{{temp.tempName}}</h4>
+                    </div>
+                </el-collapse-item>
+            </el-collapse>
         </el-card>
         <el-card class="box-card middle-card">
             <div slot="header" class="clearfix">
                 <h4>模版预览</h4>
-                <i class="icon-right el-icon-circle-check"></i>
+                <el-button type="primary" class="icon-right-btn" v-if="!previewEdit">编辑</el-button>
+                <el-button type="primary" class="icon-right-btn" v-if="previewEdit" @click="savePreview">保存</el-button>
             </div>
             <draggable v-model="targetArray"
                        class="drag-target"
@@ -49,7 +61,7 @@
             <div slot="header" class="clearfix">
                 <h4>模块列表</h4>
             </div>
-            <el-collapse v-model="activeNames" accordion>
+            <el-collapse v-model="moduleBiz" accordion>
                 <el-collapse-item v-for="(group,index) in moduleGroup"
                                   :title="group.bizName"
                                   :key="index"
@@ -80,17 +92,21 @@
         name: "templateMgr",
         data() {
             return {
-                activeNames: 1,
+                templateBizs: ['1'],
+                selectedTemp: null,
+                moduleBiz: 1,
                 sourceArrayObject: {},
                 targetArray: [],
                 layout: [],
                 mountedDom: null,
-                installedUrl:[]
+                installedUrl: [],
+                previewEdit: true
             }
         },
         computed: {
             ...mapState({
-                moduleGroup: 'moduleGroup'
+                moduleGroup: 'moduleGroup',
+                templateList: 'templateList'
             })
         },
         watch: {
@@ -108,7 +124,7 @@
             layout: {
                 deep: true,
                 handler(val) {
-                    //console.log('layout change:', JSON.stringify(val))
+                    console.log('layout change:', JSON.stringify(val))
                     //  this.showDom.innerHTML = JSON.stringify(val, null, 2)
                 }
             }
@@ -119,11 +135,19 @@
             draggable,
         },
         methods: {
+            templateClick(biz, temp) {
+                this.selectedTemp = biz + "_" + temp;
+                console.log('====:', this.selectedTemp);
+                const configs = this.templateList.find(item => item.bizName === biz)
+                    .templates.find(item => item.tempName === temp).configs;
+                console.log('=======', configs);
+                this.targetArray = configs;
+            },
             addScripts(list) {
                 console.log('根据列表添加脚本:', list)
                 let fragment = new DocumentFragment();
                 const urls = list.map(item => {
-                    if(!this.installedUrl.includes(item.url)){
+                    if (!this.installedUrl.includes(item.url)) {
                         let script = document.createElement('script');
                         script.src = item.url;
                         fragment.appendChild(script);
@@ -134,6 +158,9 @@
                 console.log('资源URL：', urls);
                 console.log('代码片段:', fragment)
                 document.body.appendChild(fragment);
+            },
+            savePreview() {
+                console.log('保存预览：', JSON.stringify(this.layout))
             },
             sourceDrag() {
                 //console.log('source drag:=======>',arguments)
@@ -175,6 +202,8 @@
             this.genSourceArrayObject();
             this.mountedDom = document.querySelector('#dyn-source');
             console.log('动态挂载节点：', this.mountedDom)
+
+            console.log('templateList=========:', this.templateList)
         }
     }
 </script>
@@ -189,6 +218,17 @@
 
         .left-card {
             width: 200px;
+
+            .template-item {
+                background-color: lightgrey;
+                margin: 5px;
+                padding-left: 10px;
+                cursor: pointer;
+            }
+
+            .selected-temp {
+                background-color: lightcoral;
+            }
         }
 
         .middle-card {
@@ -253,6 +293,11 @@
                     float: right;
                     padding: 3px 0;
                     cursor: pointer
+                }
+
+                .icon-right-btn {
+                    float: right;
+                    padding: 3px 6px;
                 }
             }
 

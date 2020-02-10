@@ -1,0 +1,102 @@
+[
+  {
+    "bizName": "业务一",
+    "templates": [
+      {
+        "tempName": "模版一",
+        "configs": [
+          {
+            "x": 4,
+            "y": 0,
+            "w": 8,
+            "h": 5,
+            "i": "3",
+            "content": "hello",
+            "url": "http://localhost:8002/packages_wc/HelloDemo/ms-wc-hello.js",
+            "bizName": "sub-service-2",
+            "compName": "ms-wc-hello",
+            "moved": false
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "w": 12,
+            "h": 6,
+            "i": "1",
+            "content": "table",
+            "url": "http://localhost:8001/packages_wc/TableDemo/ms-wc-table.js",
+            "bizName": "sub-service-1",
+            "compName": "ms-wc-table",
+            "moved": false
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 5,
+            "i": "2",
+            "content": "tree",
+            "url": "http://localhost:8001/packages_wc/TreeDemo/ms-wc-tree.js",
+            "bizName": "sub-service-1",
+            "compName": "ms-wc-tree",
+            "moved": false
+          }
+        ]
+      },
+      {
+        "tempName": "模版二",
+        "configs": []
+      }
+    ]
+  },
+  {
+    "bizName": "业务二",
+    "templates": [
+      {
+        "tempName": "模版一",
+        "configs": [
+          {
+            "x": 4,
+            "y": 0,
+            "w": 8,
+            "h": 5,
+            "i": "3",
+            "content": "hello",
+            "url": "http://localhost:8002/packages_wc/HelloDemo/ms-wc-hello.js",
+            "bizName": "sub-service-2",
+            "compName": "ms-wc-hello",
+            "moved": false
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "w": 12,
+            "h": 6,
+            "i": "1",
+            "content": "table",
+            "url": "http://localhost:8001/packages_wc/TableDemo/ms-wc-table.js",
+            "bizName": "sub-service-1",
+            "compName": "ms-wc-table",
+            "moved": false
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "w": 4,
+            "h": 5,
+            "i": "2",
+            "content": "tree",
+            "url": "http://localhost:8001/packages_wc/TreeDemo/ms-wc-tree.js",
+            "bizName": "sub-service-1",
+            "compName": "ms-wc-tree",
+            "moved": false
+          }
+        ]
+      },
+      {
+        "tempName": "模版二",
+        "configs": []
+      }
+    ]
+  }
+]

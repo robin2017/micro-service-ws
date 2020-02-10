@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         moduleList: [],
         moduleGroup:[],
+        templateList:[]
     },
     //同步方法
     mutations: {
@@ -17,6 +18,10 @@ export default new Vuex.Store({
         setModuleGroup(state,group){
             console.log('store-mutations-setModuleGroup:',group)
             state.moduleGroup = group
+        },
+        setTemplateList(state,list){
+            console.log('store-mutations-setTemplateList:',list)
+            state.templateList = list
         }
     },
     //异步方法

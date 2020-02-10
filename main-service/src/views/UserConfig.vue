@@ -48,8 +48,14 @@
         methods: {
             ...mapMutations({
                 setModuleList: 'setModuleList',
-                setModuleGroup: 'setModuleGroup'
+                setModuleGroup: 'setModuleGroup',
+                setTemplateList:'setTemplateList'
             }),
+            async getTemplateList() {
+                const templateList = await httpUtils.getTemplateList();
+                console.log('模块列表:',templateList);
+                this.setTemplateList(templateList)
+        },
             async getModuleList() {
                 const serviceList = await httpUtils.getServiceList();
                 console.log('子服务地址为：', serviceList);
@@ -86,6 +92,7 @@
         },
         created() {
             this.getModuleList();
+            this.getTemplateList();
         },
         mounted() {
             //模拟vue-router中redirect效果
@@ -98,9 +105,10 @@
 </script>
 <style scoped lang="less">
     .user-config {
-        height:100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
+
         & > .header {
             min-width: 650px;
             background-color: #545c64;
@@ -124,8 +132,9 @@
 
             }
         }
-        & > .menu-body{
-            flex:1;
+
+        & > .menu-body {
+            flex: 1;
         }
     }
 </style>
