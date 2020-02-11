@@ -3,7 +3,7 @@
         <el-card class="box-card left-card">
             <div slot="header" class="clearfix">
                 <h4>模版列表</h4>
-                <i class="icon-right el-icon-circle-plus-outline"></i>
+                <i class="icon-right el-icon-circle-plus-outline" @click="addTemplate"></i>
             </div>
             <el-collapse v-model="templateBizs">
                 <el-collapse-item v-for="(biz,index) in templateList"
@@ -12,7 +12,7 @@
                                   :key="index">
                     <div v-for="(temp,ind) in biz.templates"
                          class="template-item "
-                         :class="{'selected-temp':selectedTemp===(biz.bizName+'_'+temp.tempName)}"
+                         :class="{'selected-temp':selectedItem.bizName===biz.bizName&&selectedItem.tempName===temp.tempName}"
                          @click="templateClick(biz.bizName,temp.tempName)"
                          :key="ind">
                         <h4>{{temp.tempName}}</h4>
@@ -23,11 +23,17 @@
         <el-card class="box-card middle-card">
             <div slot="header" class="clearfix">
                 <h4>模版预览</h4>
-                <el-button type="primary" class="icon-right-btn" v-if="!previewEdit">编辑</el-button>
-                <el-button type="primary" class="icon-right-btn" v-if="previewEdit" @click="savePreview">保存</el-button>
+                <label class="icon-right-btn" style="font-size:12px;color:lightblue"
+                       v-if="previewState===0">请选择左侧一个模版</label>
+                <el-button type="primary" class="icon-right-btn" v-if="previewState===1" @click="previewEditClick">编辑
+                </el-button>
+                <el-button type="primary" class="icon-right-btn" v-if="previewState===2" @click="previewSaveClick">保存
+                </el-button>
             </div>
             <draggable v-model="targetArray"
+                       :disabled="!previewEdit"
                        class="drag-target"
+                       :class="{'drag-target-no-edit':!previewEdit,'drag-target-is-edit':previewEdit}"
                        group="modulelItem"
                        @start="drag=true"
                        @add="targetAdd"
@@ -36,8 +42,8 @@
                         :layout.sync="layout"
                         :col-num="12"
                         :row-height="30"
-                        :is-draggable="true"
-                        :is-resizable="true"
+                        :is-draggable="previewEdit"
+                        :is-resizable="previewEdit"
                         :is-mirrored="false"
                         :vertical-compact="true"
                         :margin="[10, 10]"
@@ -80,6 +86,23 @@
                 </el-collapse-item>
             </el-collapse>
         </el-card>
+        <el-dialog
+                title="提示"
+                :visible.sync="addTemplateVisible"
+                width="30%">
+            <el-form :model="tempForm" :rules="tempRule" ref="tempForm" label-width="80px">
+                <el-form-item label="业务名称" prop="bizName">
+                    <el-input v-model="tempForm.bizName"></el-input>
+                </el-form-item>
+                <el-form-item label="模版名称" prop="tempName">
+                    <el-input v-model="tempForm.tempName"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addTemplateVisible = false">取 消</el-button>
+                <el-button type="primary" @click="formConfirm">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -93,17 +116,38 @@
         data() {
             return {
                 templateBizs: ['1'],
-                selectedTemp: null,
+
+                selectedItem: {
+                    bizName: null,
+                    tempName: null
+                },
                 moduleBiz: 1,
                 sourceArrayObject: {},
                 targetArray: [],
                 layout: [],
-                mountedDom: null,
                 installedUrl: [],
-                previewEdit: true
+                previewState: 0,//0，请选择模版；1，编辑；2，保存
+                addTemplateVisible: false,
+                tempForm: {
+                    bizName: '',
+                    tempName: ''
+                },
+                tempRule: {
+                    bizName: [
+                        {required: true, message: '请输入业务名称', trigger: 'blur'},
+                        {min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur'}
+                    ],
+                    tempName: [
+                        {required: true, message: '请选择模版名称', trigger: 'change'},
+                        {min: 1, max: 10, message: '长度在 1 到 10 个字符', trigger: 'blur'}
+                    ]
+                }
             }
         },
         computed: {
+            previewEdit() {
+                return this.previewState === 2;
+            },
             ...mapState({
                 moduleGroup: 'moduleGroup',
                 templateList: 'templateList'
@@ -125,7 +169,6 @@
                 deep: true,
                 handler(val) {
                     console.log('layout change:', JSON.stringify(val))
-                    //  this.showDom.innerHTML = JSON.stringify(val, null, 2)
                 }
             }
         },
@@ -135,13 +178,67 @@
             draggable,
         },
         methods: {
+            previewEditClick() {
+                this.previewState = 2;
+            },
+            previewSaveClick() {
+                this.previewState = 1;
+                console.log('保存预览：', JSON.stringify(this.layout));
+                console.log(this.selectedItem)
+                let curTemp = this.templateList.find(item => item.bizName === this.selectedItem.bizName)
+                    .templates.find(item => item.tempName === this.selectedItem.tempName);
+                curTemp.configs = this.layout;
+                console.log('=======>', this.templateList)
+            },
+            formConfirm() {
+                this.$refs['tempForm'].validate((valid) => {
+                    console.log('valid:', valid);
+                    if (valid) {
+                        console.log(this.tempForm)
+                        let bizItem = this.templateList.find(item => item.bizName === this.tempForm.bizName);
+                        if (bizItem) {
+                            const tempItem = bizItem.templates.find(item => item.tempName === this.tempForm.tempName)
+                            if (tempItem) {
+                                this.$message('已存在该模版，请重新输入!!!');
+                                return false;
+                            }
+                        }
+                        if (!bizItem) {//不存在业务
+                            bizItem = {
+                                bizName: this.tempForm.bizName,
+                                templates: [{tempName: this.tempForm.tempName, configs: []}]
+                            };
+                            //这样不合适，应该调用vuex的接口
+                            this.templateList.push(bizItem)
+                        } else {//存在业务，不存在模版
+                            bizItem.templates.push({tempName: this.tempForm.tempName, configs: []})
+                        }
+                        this.$message({type: 'success', message: '保存成功'});
+                        //同时更新后端服务
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+                // this.addTemplateVisible = false
+            },
+            addTemplate() {
+                console.log('添加模版');
+                //清空
+                for (let key in this.tempForm) {
+                    this.tempForm[key] = ""
+                }
+                this.addTemplateVisible = true;
+
+            },
             templateClick(biz, temp) {
-                this.selectedTemp = biz + "_" + temp;
-                console.log('====:', this.selectedTemp);
+                this.selectedItem = {bizName: biz, tempName: temp}
+                console.log('====:', this.selectedItem);
                 const configs = this.templateList.find(item => item.bizName === biz)
                     .templates.find(item => item.tempName === temp).configs;
                 console.log('=======', configs);
                 this.targetArray = configs;
+                this.previewState = 1;
             },
             addScripts(list) {
                 console.log('根据列表添加脚本:', list)
@@ -159,9 +256,7 @@
                 console.log('代码片段:', fragment)
                 document.body.appendChild(fragment);
             },
-            savePreview() {
-                console.log('保存预览：', JSON.stringify(this.layout))
-            },
+
             sourceDrag() {
                 //console.log('source drag:=======>',arguments)
             },
@@ -200,8 +295,7 @@
         mounted() {
             console.log('moduleGroup val:', this.moduleGroup);
             this.genSourceArrayObject();
-            this.mountedDom = document.querySelector('#dyn-source');
-            console.log('动态挂载节点：', this.mountedDom)
+
 
             console.log('templateList=========:', this.templateList)
         }
@@ -235,10 +329,28 @@
             flex: 1;
             margin: 0 10px;
 
+
             .drag-target {
                 height: 100%;
-                border: 1px solid gray;
+
                 overflow: auto;
+
+
+                .drag-grid-item {
+                    border: 1px solid gray;
+                    position: relative;
+
+                    .el-icon-delete {
+                        display: none;
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                    }
+                }
+            }
+
+            .drag-target-is-edit {
+                border: 1px solid gray;
 
                 .drag-grid-item:hover {
                     background-color: rgba(100, 100, 100, 0.4);
@@ -251,14 +363,6 @@
 
                 .drag-grid-item {
                     border: 1px solid red;
-                    position: relative;
-
-                    .el-icon-delete {
-                        display: none;
-                        position: absolute;
-                        top: 5px;
-                        right: 5px;
-                    }
                 }
             }
         }
