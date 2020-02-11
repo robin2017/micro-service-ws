@@ -116,7 +116,6 @@
         data() {
             return {
                 templateBizs: ['1'],
-
                 selectedItem: {
                     bizName: null,
                     tempName: null
@@ -256,16 +255,6 @@
                 console.log('代码片段:', fragment)
                 document.body.appendChild(fragment);
             },
-
-            sourceDrag() {
-                //console.log('source drag:=======>',arguments)
-            },
-            targetAdd(evt) {
-                // console.log('target add:=======>',evt)
-            },
-            targetEnd() {
-                // console.log('target end:=======>',arguments)
-            },
             deleteItem(i) {
                 const target = this.targetArray.find(item => item.i === i);
                 this.targetArray = this.targetArray.filter(item => item.i !== i);
@@ -332,14 +321,10 @@
 
             .drag-target {
                 height: 100%;
-
                 overflow: auto;
-
-
                 .drag-grid-item {
                     border: 1px solid gray;
                     position: relative;
-
                     .el-icon-delete {
                         display: none;
                         position: absolute;

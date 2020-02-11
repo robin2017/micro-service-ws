@@ -2,6 +2,27 @@
   "name": "sub-service",
   "version": "0.1.0",
   "private": true,
+  "micro-service-templates": [
+    {
+      "name": "默认模版1",
+      "config": [
+        {
+          "x": 4,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "content": "hello"
+        },
+        {
+          "x": 0,
+          "y": 5,
+          "w": 12,
+          "h": 6,
+          "content": "table"
+        }
+      ]
+    }
+  ],
   "micro-service-modules": [
     {
       "module": "HelloDemo",
@@ -63,7 +84,7 @@
       "eslint:recommended"
     ],
     "rules": {
-      "no-console":"off",
+      "no-console": "off",
       "no-unused-vars": "off",
       "no-undef": "off"
     },

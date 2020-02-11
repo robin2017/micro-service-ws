@@ -6,6 +6,7 @@
             <el-menu :default-active="activeIndex"
                      router
                      class="el-menu-demo"
+                     @select="handleMenuSelect"
                      mode="horizontal"
                      background-color="#545c64"
                      text-color="#fff"
@@ -23,6 +24,7 @@
                     <span slot="title">用户管理</span>
                 </el-menu-item>
             </el-menu>
+            <i class="el-icon-view user-preview" v-if="showPreview" @click="showPreviewClick"></i>
         </section>
         <section class="menu-body">
             <router-view></router-view>
@@ -37,25 +39,46 @@
         data() {
             return {
                 //默认子页面
-                activeIndex: '/userConfig/moduleMgr'
+                activeIndex: '/userConfig/moduleMgr',
+                showPreview: false
             };
         },
         computed: {
+
             ...mapState({
                 moduleList: 'moduleList'
             })
+        },
+        watch: {
+            activeIndex(val) {
+                console.log('value:', val)
+            }
         },
         methods: {
             ...mapMutations({
                 setModuleList: 'setModuleList',
                 setModuleGroup: 'setModuleGroup',
-                setTemplateList:'setTemplateList'
+                setTemplateList: 'setTemplateList'
             }),
+            showPreviewClick() {
+                this.$router.push({
+                    path: '/userDisplay',
+                    query: {bizName: '业务一', tempName: '模版一'}
+                })
+            },
+            handleMenuSelect(key, keyPath) {
+                if (key === "/userConfig/templateMgr") {
+                    this.showPreview = true
+                } else {
+                    this.showPreview = false
+                }
+                console.log(key, keyPath)
+            },
             async getTemplateList() {
                 const templateList = await httpUtils.getTemplateList();
-                console.log('模块列表:',templateList);
+                console.log('模块列表:', templateList);
                 this.setTemplateList(templateList)
-        },
+            },
             async getModuleList() {
                 const serviceList = await httpUtils.getServiceList();
                 console.log('子服务地址为：', serviceList);
@@ -129,7 +152,13 @@
 
             .el-menu {
                 display: inline-block;
+            }
 
+            .user-preview {
+                color: white;
+                position: absolute;
+                right: 30px;
+                cursor: pointer;
             }
         }
 
