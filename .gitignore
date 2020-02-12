@@ -3,6 +3,8 @@ node_modules
 */dist/
 other-test
 main-service-test/
+sub-service-antd/
+antd-vue-test/
 
 
 packages
