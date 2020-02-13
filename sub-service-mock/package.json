@@ -6,7 +6,8 @@
   "scripts": {
     "serve1": "hs --cors ./serve1 -p 8001",
     "serve2": "hs --cors ./serve2 -p 8002",
-    "serve:all": "npm run serve1 & npm run serve2"
+    "serve3": "hs --cors ./serve3 -p 8003",
+    "serve:all": "npm run serve1 & npm run serve2 & npm run serve3"
   },
   "author": "",
   "license": "ISC",

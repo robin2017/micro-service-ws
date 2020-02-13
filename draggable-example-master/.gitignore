@@ -1,16 +1,6 @@
 .DS_Store
 node_modules
-*/dist/
-other-test
-main-service-test/
-sub-service-antd/
-antd-vue-test/
-draggable-example-master/
-
-
-packages
-packages_lib
-packages_wc
+/dist
 
 # local env files
 .env.local
@@ -28,4 +18,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+*.sw*

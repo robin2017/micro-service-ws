@@ -35,7 +35,7 @@
                        class="drag-target"
                        :class="{'drag-target-no-edit':!previewEdit,'drag-target-is-edit':previewEdit}"
                        group="modulelItem"
-                       @start="drag=true"
+                       @start="targetDragStart"
                        @add="targetAdd"
                        @end="targetEnd">
                 <grid-layout
@@ -75,7 +75,7 @@
                     <draggable v-model="sourceArrayObject[group.bizName]"
                                class="drag-source"
                                group="modulelItem"
-                               @start="sourceDrag"
+                               @start="sourceStart"
                                @end="drag=false">
                         <div v-for="element in sourceArrayObject[group.bizName]"
                              :key="element.i"
@@ -177,6 +177,19 @@
             draggable,
         },
         methods: {
+            targetAdd(evt) {
+                debugger
+                console.log('00000010:', evt)
+            },
+            targetEnd(evt) {
+                console.log('00000200:', evt)
+            },
+            targetDragStart(evt) {
+                console.log('0000000:', evt)
+            },
+            sourceStart(evt){
+                console.log('ddddddd:',evt)
+            },
             previewEditClick() {
                 this.previewState = 2;
             },
@@ -253,7 +266,7 @@
                 });
                 console.log('资源URL：', urls);
                 console.log('代码片段:', fragment)
-                document.body.appendChild(fragment);
+                document.head.appendChild(fragment);
             },
             deleteItem(i) {
                 const target = this.targetArray.find(item => item.i === i);
@@ -322,9 +335,11 @@
             .drag-target {
                 height: 100%;
                 overflow: auto;
+
                 .drag-grid-item {
                     border: 1px solid gray;
                     position: relative;
+
                     .el-icon-delete {
                         display: none;
                         position: absolute;
