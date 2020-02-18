@@ -1,0 +1,22 @@
+{
+  "name": "micro-service-ws",
+  "version": "1.0.0",
+  "description": "desc",
+  "main": "index.js",
+  "scripts": {
+    "step1": "cd ./sub-service && npm run deploy.ws",
+    "step2": "cd ./sub-service-backend && npm run serve",
+    "step3": "cd ./main-service && npm run serve",
+    "do.all": "npm run step1 && npm run step2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robin2017/micro-service-ws.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robin2017/micro-service-ws/issues"
+  },
+  "homepage": "https://github.com/robin2017/micro-service-ws#readme"
+}

@@ -2,6 +2,7 @@ const path = require('path');
 const projectConf = require('./config')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyOutputWebpackPlugin = require('copy-output-webpack-plugin');
 const resolve = dir => path.join(__dirname, dir);
 console.log('现在环境：', process.env.NODE_ENV);
 console.log('现在目标:', process.env.TARGET);
@@ -43,36 +44,15 @@ const vueConf = {
                     `./public/index-${projectConf.target}.html`);
                 htmlWebpackPlugin.options.filename = "index.html"
             }
-            // config.externals = {
-            //     'vue': {
-            //         commonjs: 'vue',
-            //         commonjs2: 'vue',
-            //         umd: 'vue',
-            //         root: 'Vue'
-            //     }
-            // }
-            // config.optimization = {
-            //     splitChunks: {
-            //         cacheGroups: {
-            //             // vue: {
-            //             //     name: "chunk-vue",
-            //             //     test: /[\\/]node_modules[\\/]vue[\\/]/,
-            //             //     chunks: "initial",
-            //             //     priority: 3,
-            //             //     reuseExistingChunk: true,
-            //             //     enforce: true
-            //             // },
-            //             // elementUi: {
-            //             //     name: "chunk-element-ui",
-            //             //     test: /[\\/]node_modules[\\/]element-ui[\\/]/,
-            //             //     chunks: "initial",
-            //             //     priority: 3,
-            //             //     reuseExistingChunk: true,
-            //             //     enforce: true
-            //             // }
-            //         }
-            //     }
-            // }
+            if (process.env.NODE_ENV === 'production'
+                && process.env.DEPLOY === 'true'
+                && projectConf.CopyToBackend.need) {
+                config.plugins.push(new CopyOutputWebpackPlugin({
+                    from: path.resolve(__dirname, './packages_wc'),
+                    to: path.join(__dirname, projectConf.CopyToBackend.path),
+                    deleteBeforeCopyList: ["./static", "./index.html", "./favicon.ico"]
+                }))
+            }
         }
     }
 };

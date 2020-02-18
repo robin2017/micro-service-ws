@@ -58,7 +58,8 @@
     "build": "cross-env NODE_ENV=production TARGET=app vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build.ws": "cross-env NODE_ENV=production TARGET=wc node build/index.js",
-    "build.lib": "cross-env NODE_ENV=production TARGET=lib node build/index.js"
+    "build.lib": "cross-env NODE_ENV=production TARGET=lib node build/index.js",
+    "deploy.ws": "cross-env DEPLOY=true npm run build.ws"
   },
   "dependencies": {
     "core-js": "^3.4.4",
@@ -69,6 +70,7 @@
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "babel-eslint": "^10.0.3",
+    "copy-output-webpack-plugin": "^1.0.1",
     "cross-env": "^6.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
