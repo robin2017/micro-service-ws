@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const Koa = require('koa');
 const staticCache = require('koa-static-cache');
 const router = require('koa-router');
@@ -9,7 +10,9 @@ const app = new Koa();
 const staticPath = './public';
 const backendRouter = new router();
 backendRouter.get('/ZHTEST/rest/testController/personList', async (ctx) => {
-    ctx.body = JSON.stringify(['aa', 'bb'])
+    const data = fs.readFileSync(path.resolve(__dirname, './data/people.json'), 'utf-8');
+    console.log('ddddd:', data)
+    ctx.body = data
 });
 app.use(cors());
 app.use(staticCache(path.join(__dirname, staticPath), {
