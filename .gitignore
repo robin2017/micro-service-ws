@@ -7,6 +7,7 @@ sub-service-antd/
 antd-vue-test/
 draggable-example-master/
 sub-service-backend/public
+sub-service-backend-antd/public
 
 
 packages

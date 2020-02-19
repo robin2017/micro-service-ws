@@ -4,11 +4,15 @@
   "description": "desc",
   "main": "index.js",
   "scripts": {
+    "install.main": "cd ./main-service && npm i",
+    "install.sub": "cd ./sub-service && npm i",
+    "install.all": "npm-run-all install.main install.sub",
     "step1": "cd ./sub-service && npm run deploy.ws",
     "step2": "cd ./sub-service-backend && npm run serve",
+    "step22": "cd ./sub-service-backend-antd && npm run serve",
     "step3": "cd ./main-service && npm run serve",
     "deploy": "npm run step1",
-    "serve": "npm-run-all -p step2 step3",
+    "serve": "npm-run-all -p step2 step22 step3",
     "do.all": "npm-run-all deploy serve"
   },
   "repository": {

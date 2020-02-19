@@ -187,8 +187,8 @@
             targetDragStart(evt) {
                 console.log('0000000:', evt)
             },
-            sourceStart(evt){
-                console.log('ddddddd:',evt)
+            sourceStart(evt) {
+                console.log('ddddddd:', evt)
             },
             previewEditClick() {
                 this.previewState = 2;
@@ -254,7 +254,7 @@
             },
             addScripts(list) {
                 console.log('根据列表添加脚本:', list)
-                let fragment = new DocumentFragment();
+                let fragment = document.createDocumentFragment()
                 const urls = list.map(item => {
                     if (!this.installedUrl.includes(item.url)) {
                         let script = document.createElement('script');
@@ -266,7 +266,8 @@
                 });
                 console.log('资源URL：', urls);
                 console.log('代码片段:', fragment)
-                document.head.appendChild(fragment);
+                document.querySelector('#wcMounted').appendChild(fragment)
+                //document.head.appendChild(fragment);
             },
             deleteItem(i) {
                 const target = this.targetArray.find(item => item.i === i);
