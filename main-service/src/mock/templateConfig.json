@@ -11,10 +11,10 @@
             "w": 8,
             "h": 5,
             "i": "3",
-            "content": "antd-hello",
-            "url": "http://localhost:3000/packages_wc/HelloDemo/ms-wc-antd-hello.js",
+            "content": "hello",
+            "url": "http://localhost:3000/packages_wc/HelloDemo/ms-wc-hello.js",
             "bizName": "sub-service",
-            "compName": "ms-wc-antd-hello",
+            "compName": "ms-wc-hello",
             "moved": false
           },
           {

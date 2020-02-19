@@ -1,7 +1,7 @@
 <template>
     <section class="Index">
         <h1>Hello,MicroService</h1>
-        <el-button type="primary" @click="btnClick">按钮</el-button>
+<!--        <el-button type="primary" @click="btnClick">按钮</el-button>-->
         <h2>从后台获取信息：</h2>
         <ul>
             <li v-for="(info,index) in infoList" :key="index">

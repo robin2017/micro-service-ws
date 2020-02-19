@@ -7,7 +7,9 @@
     "step1": "cd ./sub-service && npm run deploy.ws",
     "step2": "cd ./sub-service-backend && npm run serve",
     "step3": "cd ./main-service && npm run serve",
-    "do.all": "npm run step1 && npm run step2"
+    "deploy": "npm run step1",
+    "serve": "npm-run-all -p step2 step3",
+    "do.all": "npm-run-all deploy serve"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/robin2017/micro-service-ws/issues"
   },
-  "homepage": "https://github.com/robin2017/micro-service-ws#readme"
+  "homepage": "https://github.com/robin2017/micro-service-ws#readme",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
