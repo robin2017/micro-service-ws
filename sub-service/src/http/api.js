@@ -1,8 +1,12 @@
 import axios from 'axios';
+import {getRuntimeBaseUrl} from './utils'
 
-axios.defaults.baseURL = process.env.VUE_APP_BASE_API;
-console.log(`现在环境为:${process.env.NODE_ENV},`
-    + `axios基本路径：${process.env.VUE_APP_BASE_API}`);
+const env = process.env.NODE_ENV;
+const baseUrl = (env === 'production' ? getRuntimeBaseUrl() : "") + process.env.VUE_APP_BASE_API;
+
+axios.defaults.baseURL = baseUrl;
+console.log(`现在环境为:${env},`
+    + `axios基本路径：${baseUrl}`);
 
 export function get(url) {
     return axios.get(url)
