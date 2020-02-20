@@ -73,10 +73,10 @@
             "w": 12,
             "h": 6,
             "i": "1",
-            "content": "antd-table",
-            "url": "http://localhost:3001/packages_wc/TableDemo/ms-wc-antd-table.js",
+            "content": "a-table",
+            "url": "http://localhost:3001/packages_wc/TableDemo/ms-wc-a-table.js",
             "bizName": "sub-service-2",
-            "compName": "ms-wc-antd-table",
+            "compName": "ms-wc-a-table",
             "moved": false
           },
           {
