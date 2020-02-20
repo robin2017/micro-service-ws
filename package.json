@@ -9,6 +9,7 @@
     "install:sub-antd-cli": "cd sub-service-antd-cli && npm i",
     "install:sub-antd-back": "cd sub-service-antd-backend && npm i",
     "install:main": "cd main-service-frontend && npm i",
+
     "install.all": "npm-run-all -p install:sub-ele-cli install:sub-ele-back install:sub-antd-cli install:sub-antd-back install:main",
     "deploy:element": "cd sub-service-element-cli && npm run deploy.wc",
     "deploy:antd": "cd sub-service-antd-cli && npm run deploy.wc",
@@ -18,7 +19,9 @@
     "serve:all": "npm-run-all -p serve:element serve:antd",
     "service:sub": "npm-run-all deploy:all serve:all",
     "service:main": "cd main-service-frontend && npm run serve",
-    "service:all": "npm-run-all -p service:sub service:main"
+    "service:all": "npm-run-all -p service:sub service:main",
+
+    "do:all": "npm-run-all install:main service:all"
   },
   "repository": {
     "type": "git",
