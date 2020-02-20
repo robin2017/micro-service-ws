@@ -9,7 +9,8 @@
     "install:sub-antd-cli": "cd sub-service-antd-cli && npm i",
     "install:sub-antd-back": "cd sub-service-antd-backend && npm i",
     "install:main": "cd main-service-frontend && npm i",
-    "install.all": "npm-run-all -p install:sub-ele-cli install:sub-ele-back install:sub-antd-cli install:sub-antd-back install:main",
+    "install:self": "npm i",
+    "install.all": "npm-run-all -p install:sub-ele-cli install:sub-ele-back install:sub-antd-cli install:sub-antd-back install:main install:self",
 
 
     "deploy:element": "cd sub-service-element-cli && npm run deploy.wc",
