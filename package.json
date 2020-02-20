@@ -17,7 +17,7 @@
     "serve:antd": "cd sub-service-antd-backend && npm run serve",
     "serve:all": "npm-run-all -p serve:element serve:antd",
     "service:sub": "npm-run-all deploy:all serve:all",
-    "service:main": "cd main-service-fontend && npm run serve",
+    "service:main": "cd main-service-frontend && npm run serve",
     "service:all": "npm-run-all -p service:sub service:main"
   },
   "repository": {

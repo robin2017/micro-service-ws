@@ -60,7 +60,7 @@
 
     "serve": "cross-env NODE_ENV=development vue-cli-service serve",
     "build.wc": "npm run modify:thirdparty && cross-env NODE_ENV=production TARGET=wc node build/index.js",
-    "deploy.wc": "cross-env DEPLOY=true npm run build.ws"
+    "deploy.wc": "cross-env DEPLOY=true npm run build.wc"
   },
   "dependencies": {
     "core-js": "^3.4.4",
