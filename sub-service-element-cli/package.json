@@ -59,8 +59,8 @@
     "modify:thirdparty": "node build/modifyThirdPartyModule.js",
 
     "serve": "cross-env NODE_ENV=development vue-cli-service serve",
-    "build.ws": "npm run modify:thirdparty && cross-env NODE_ENV=production TARGET=wc node build/index.js",
-    "deploy.ws": "cross-env DEPLOY=true npm run build.ws"
+    "build.wc": "npm run modify:thirdparty && cross-env NODE_ENV=production TARGET=wc node build/index.js",
+    "deploy.wc": "cross-env DEPLOY=true npm run build.ws"
   },
   "dependencies": {
     "core-js": "^3.4.4",

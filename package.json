@@ -9,8 +9,8 @@
     "install.all": "npm-run-all install.main install.sub",
 
 
-    "deploy:element": "cd sub-service-element-cli && npm run deploy.ws",
-    "deploy:antd": "cd sub-service-antd-cli && npm run deploy.ws",
+    "deploy:element": "cd sub-service-element-cli && npm run deploy.wc",
+    "deploy:antd": "cd sub-service-antd-cli && npm run deploy.wc",
     "deploy:all": "npm-run-all deploy:element deploy:antd",
     "serve:element": "cd sub-service-element-backend && npm run serve",
     "serve:antd": "cd sub-service-antd-backend && npm run serve",

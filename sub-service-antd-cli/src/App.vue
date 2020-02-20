@@ -1,8 +1,5 @@
 <template>
-    <div>
-        hello
-        <test></test>
-    </div>
+    <test></test>
 </template>
 <script>
     import Test from '@m/TableDemo/Index.vue'

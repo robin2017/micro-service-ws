@@ -9,24 +9,29 @@ const projectConf = require('../config');
 //获取package.json中信息
 const pkgObj = require(path.resolve(__dirname, '../package.json'))
 const msModules = pkgObj['micro-service-modules'];
+const realRootPath = `../${projectConf.packageName}`
 if (!msModules instanceof Array) {
     console.log('请填写[micro-service-modules]属性');
     return;
 }
 // 删除当前目录下的packages目录
-rimraf(path.resolve(__dirname, `../${projectConf.packageName}`), async function (err) {
+rimraf(path.resolve(__dirname, realRootPath), async function (err) {
     if (err) {
         console.log(err);
         return;
     }
-    //将package.json中相关内容复制到打包结果中
+
+    //1、将package.json中相关内容复制到打包结果中
     let newPkg = {
         name: pkgObj.name,
         'micro-service-modules': pkgObj['micro-service-modules']
     };
-    fs.mkdirSync(path.resolve(__dirname, '../', projectConf.packageName));
-    const newPkgPath = path.resolve(__dirname, '../', projectConf.packageName, "./package.json");
+    //先创建文件夹
+    fs.mkdirSync(path.resolve(__dirname, realRootPath))
+    const newPkgPath = path.resolve(__dirname, realRootPath, "./package.json");
     fs.writeFileSync(newPkgPath, JSON.stringify(newPkg, null, '\t'));
+
+    //2、各个模块进行打包
     for (let i = 0; i < msModules.length; i++) {
         let item = msModules[i];
         console.log(`正在构建第${i + 1}个模块...`);
