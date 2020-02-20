@@ -2,7 +2,7 @@
     <div class="template-mgr">
         <el-card class="box-card left-card">
             <div slot="header" class="clearfix">
-                <h4>模版列表</h4>
+                <h4>信息专题列表</h4>
                 <i class="icon-right el-icon-circle-plus-outline" @click="addTemplate"></i>
             </div>
             <el-collapse v-model="templateBizs">
@@ -22,9 +22,9 @@
         </el-card>
         <el-card class="box-card middle-card">
             <div slot="header" class="clearfix">
-                <h4>模版预览</h4>
+                <h4>专题预览</h4>
                 <label class="icon-right-btn" style="font-size:12px;color:lightblue"
-                       v-if="previewState===0">请选择左侧一个模版</label>
+                       v-if="previewState===0">请选择左侧一个专题</label>
                 <el-button type="primary" class="icon-right-btn" v-if="previewState===1" @click="previewEditClick">编辑
                 </el-button>
                 <el-button type="primary" class="icon-right-btn" v-if="previewState===2" @click="previewSaveClick">保存
@@ -65,7 +65,7 @@
         </el-card>
         <el-card class="box-card right-card">
             <div slot="header" class="clearfix">
-                <h4>模块列表</h4>
+                <h4>信息块列表</h4>
             </div>
             <el-collapse v-model="moduleBiz" accordion>
                 <el-collapse-item v-for="(group,index) in moduleGroup"

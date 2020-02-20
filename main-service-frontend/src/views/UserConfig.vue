@@ -2,7 +2,7 @@
     <div class="user-config">
         <section class="header">
             <img src="../assets/u304.svg">
-            <h2>信息墙管理服务</h2>
+            <h2>联合信息墙管理服务</h2>
             <el-menu :default-active="activeIndex"
                      router
                      class="el-menu-demo"
@@ -13,11 +13,11 @@
                      active-text-color="#ffd04b">
                 <el-menu-item index="/userConfig/moduleMgr">
                     <i class="el-icon-suitcase"></i>
-                    <span slot="title">模块管理</span>
+                    <span slot="title">信息块管理</span>
                 </el-menu-item>
                 <el-menu-item index="/userConfig/templateMgr">
                     <i class="el-icon-suitcase-1"></i>
-                    <span slot="title">模版管理</span>
+                    <span slot="title">信息专题管理</span>
                 </el-menu-item>
                 <el-menu-item index="/userConfig/userMgr" disabled>
                     <i class="el-icon-user"></i>
@@ -146,8 +146,7 @@
             h2 {
                 color: white;
                 display: inline;
-                margin-left: 10px;
-                margin-right: 20px;
+                margin:0px 20px 0px 10px;
             }
 
             .el-menu {

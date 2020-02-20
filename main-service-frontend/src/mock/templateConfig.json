@@ -3,7 +3,7 @@
     "bizName": "业务一",
     "templates": [
       {
-        "tempName": "模版一",
+        "tempName": "专题一",
         "configs": [
           {
             "x": 4,
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "tempName": "模版二",
+        "tempName": "专题二",
         "configs": []
       }
     ]
@@ -53,7 +53,7 @@
     "bizName": "业务二",
     "templates": [
       {
-        "tempName": "模版一",
+        "tempName": "专题一",
         "configs": [
           {
             "x": 4,
@@ -94,7 +94,7 @@
         ]
       },
       {
-        "tempName": "模版二",
+        "tempName": "专题二",
         "configs": []
       }
     ]

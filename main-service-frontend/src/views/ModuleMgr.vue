@@ -6,22 +6,22 @@
             <el-table-column
                     prop="bizName"
                     label="业务名称"
-                    width="120">
+                    width="180">
             </el-table-column>
             <el-table-column
                     prop="moduleName"
-                    label="模块名称"
-                    width="80">
+                    label="信息块名称"
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="moduleUrl"
-                    label="模块资源">
+                    label="信息块资源">
             </el-table-column>
             <el-table-column
                     label="操作"
                     width="100">
                 <template slot-scope="scope">
-                    <el-button @click="openUrl(scope.row.moduleUrl)" type="primary">打开</el-button>
+                    <el-button @click="openUrl(scope.row.moduleUrl)" type="primary">查看</el-button>
                 </template>
             </el-table-column>
         </el-table>
