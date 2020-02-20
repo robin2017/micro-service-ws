@@ -1,0 +1,79 @@
+{
+  "name": "sub-service",
+  "version": "0.1.0",
+  "private": true,
+  "micro-service-templates": [
+    {
+      "name": "默认模版1",
+      "config": [
+        {
+          "x": 4,
+          "y": 0,
+          "w": 8,
+          "h": 5,
+          "content": "hello"
+        },
+        {
+          "x": 0,
+          "y": 5,
+          "w": 12,
+          "h": 6,
+          "content": "table"
+        }
+      ]
+    }
+  ],
+  "micro-service-modules": [
+    {
+      "module": "TableDemo",
+      "name": "antd-table",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    }
+  ],
+  "scripts": {
+    "serve": "cross-env NODE_ENV=development vue-cli-service serve",
+    "build": "cross-env NODE_ENV=production TARGET=app vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "build.ws": "cross-env NODE_ENV=production TARGET=wc node build/index.js",
+    "build.lib": "cross-env NODE_ENV=production TARGET=lib node build/index.js"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.4.11",
+    "core-js": "^3.4.4",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-plugin-eslint": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^6.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-console": "off",
+      "no-unused-vars": "off",
+      "no-undef": "off"
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

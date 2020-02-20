@@ -1,0 +1,10 @@
+<meta charset="utf-8">
+<title><%- htmlWebpackPlugin.options.libName %> demo</title>
+<script src="../lib/vue.min.js"></script>
+<script src="../lib/antd.min.js"></script>
+<script src="../lib/axios.min.js"></script>
+<script src="./<%- htmlWebpackPlugin.options.libName %>.js"></script>
+
+<% for (const comp of htmlWebpackPlugin.options.components) { %>
+<<%= comp %>></<%= comp %>>
+<% } %>

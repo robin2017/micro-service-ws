@@ -1,0 +1,33 @@
+{
+	"name": "sub-service",
+	"micro-service-modules": [
+		{
+			"module": "HelloDemo",
+			"name": "hello",
+			"entry": "Index.vue",
+			"version": "0.0.1",
+			"description": "测试模块"
+		},
+		{
+			"module": "CollapseDemo",
+			"name": "collapse",
+			"entry": "Index.vue",
+			"version": "0.0.1",
+			"description": "测试模块"
+		},
+		{
+			"module": "TableDemo",
+			"name": "table",
+			"entry": "Index.vue",
+			"version": "0.0.1",
+			"description": "测试模块"
+		},
+		{
+			"module": "TreeDemo",
+			"name": "tree",
+			"entry": "Index.vue",
+			"version": "0.0.1",
+			"description": "测试模块"
+		}
+	]
+}
