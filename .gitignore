@@ -1,18 +1,16 @@
 .DS_Store
 node_modules
 */dist/
-other-test
-main-service-test/
-sub-service-antd/
-antd-vue-test/
-draggable-example-master/
-sub-service-backend/public
-sub-service-backend-antd/public
+*/packages_wc/
+*/packages_lib/
 
 
-packages
-packages_lib
-packages_wc
+
+sub-service-antd-backend/public
+sub-service-element-backend/public
+
+
+
 
 # local env files
 .env.local
