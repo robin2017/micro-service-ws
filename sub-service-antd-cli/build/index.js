@@ -9,6 +9,7 @@ const projectConf = require('../config');
 //获取package.json中信息
 const pkgObj = require(path.resolve(__dirname, '../package.json'))
 const msModules = pkgObj['micro-service-modules'];
+const msTemplates = pkgObj['micro-service-templates'];
 const realRootPath = `../${projectConf.packageName}`
 if (!msModules instanceof Array) {
     console.log('请填写[micro-service-modules]属性');
@@ -24,8 +25,11 @@ rimraf(path.resolve(__dirname, realRootPath), async function (err) {
     //1、将package.json中相关内容复制到打包结果中
     let newPkg = {
         name: pkgObj.name,
-        'micro-service-modules': pkgObj['micro-service-modules']
+        'micro-service-modules': msModules
     };
+    if(msTemplates){
+        newPkg['micro-service-templates'] = msTemplates;
+    }
     //先创建文件夹
     fs.mkdirSync(path.resolve(__dirname, realRootPath))
     const newPkgPath = path.resolve(__dirname, realRootPath, "./package.json");
