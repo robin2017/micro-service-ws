@@ -4,8 +4,9 @@
   "private": true,
   "micro-service-templates": [
     {
-      "name": "默认模版1",
-      "config": [
+      "bizName": "业务一",
+      "templateName": "默认专题1",
+      "configs": [
         {
           "x": 4,
           "y": 0,

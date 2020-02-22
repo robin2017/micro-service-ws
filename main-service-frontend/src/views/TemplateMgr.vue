@@ -169,6 +169,9 @@
                 handler(val) {
                     console.log('layout change:', JSON.stringify(val))
                 }
+            },
+            templateList(val){
+                console.log('---------templateList  change ------:',val)
             }
         },
         components: {

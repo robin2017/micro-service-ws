@@ -46,7 +46,8 @@
         computed: {
 
             ...mapState({
-                moduleList: 'moduleList'
+                moduleList: 'moduleList',
+                templateList: 'templateList'
             })
         },
         watch: {
@@ -85,6 +86,7 @@
                 let pkgs = [];
                 let moduleList = [];
                 let moduleGroup = [];
+                let templateGroup = [];
                 for (let i = 0; i < serviceList.length; i++) {
                     let pkg = await httpUtils.getServiceInfo(serviceList[i]).catch(err => {
                         console.log('获取子服务信息失败：', err);
@@ -104,6 +106,9 @@
                             groupList.push({moduleName, moduleUrl, moduleVersion})
                         }
                         moduleGroup.push({bizName, groupList})
+                        if (pkg['micro-service-templates']) {
+                            templateGroup.push({bizName, url: serviceList[i], list: pkg['micro-service-templates']})
+                        }
                     }
                 }
                 console.log('获取所有的pkgs：', pkgs);
@@ -111,6 +116,40 @@
                 console.log('获取所有的moduleGroup:', moduleGroup);
                 this.setModuleList(moduleList);
                 this.setModuleGroup(moduleGroup);
+                this.addTemplateList(templateGroup)
+            },
+            addTemplateList(templateGroup) {
+                let templateList = this.templateList;//这里暂时不需要clone ！！
+                for (let i = 0; i < templateGroup.length; i++) {
+                    let info = templateGroup[i];
+                    for (let j = 0; j < info.list.length; j++) {
+                        let template = info.list[j];
+                        let bizTemp = templateList.find(item => item.bizName === template.bizName);
+                        if (!bizTemp) {
+                            bizTemp = {bizName: template.bizName, templates: []};
+                            templateList.push(bizTemp);
+                        }
+                        const newTemp = {
+                            tempName: template.templateName,
+                            configs: []
+                        };
+                        for (let k = 0; k < template.configs.length; k++) {
+                            let config = template.configs[k];
+                            //根据moduleName查询moduleUrl
+                            let url = this.moduleList.find(item => item.moduleName === config.content).moduleUrl;
+                            const newConf = {
+                                ...config,
+                                i: 888,
+                                url,
+                                bizName: '',
+                                compName: `ms-wc-${config.content}`
+                            }
+                            newTemp.configs.push(newConf)
+                        }
+                        bizTemp.templates.push(newTemp)
+                    }
+                }
+                this.setTemplateList(templateList)
             }
         },
         created() {
@@ -146,7 +185,7 @@
             h2 {
                 color: white;
                 display: inline;
-                margin:0px 20px 0px 10px;
+                margin: 0px 20px 0px 10px;
             }
 
             .el-menu {
