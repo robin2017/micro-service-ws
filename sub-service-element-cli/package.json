@@ -4,22 +4,130 @@
   "private": true,
   "micro-service-templates": [
     {
-      "bizName": "业务一",
-      "templateName": "默认专题1",
+      "bizName": "ui业务",
+      "templateName": "element组件专题",
       "configs": [
         {
-          "x": 4,
+          "x": 0,
+          "y": 12,
+          "w": 12,
+          "h": 9,
+          "i": "6",
+          "content": "ele-transfer"
+        },
+        {
+          "x": 7,
           "y": 0,
-          "w": 8,
-          "h": 5,
-          "content": "hello"
+          "w": 5,
+          "h": 6,
+          "i": 888,
+          "content": "ele-tree"
         },
         {
           "x": 0,
-          "y": 5,
+          "y": 6,
           "w": 12,
           "h": 6,
-          "content": "table"
+          "i": "5",
+          "content": "ele-form"
+        },
+        {
+          "x": 0,
+          "y": 27,
+          "w": 12,
+          "h": 6,
+          "i": 888,
+          "content": "ele-collapse"
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 6,
+          "content": "ele-hello"
+        },
+        {
+          "x": 0,
+          "y": 21,
+          "w": 12,
+          "h": 6,
+          "content": "ele-table"
+        }
+      ]
+    },
+    {
+      "bizName": "专项业务",
+      "templateName": "表单组件专题",
+      "configs": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 9,
+          "i": "5",
+          "content": "ele-form"
+        },
+        {
+          "x": 0,
+          "y": 9,
+          "w": 12,
+          "h": 8,
+          "i": "12",
+          "content": "ant-transfer"
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "w": 6,
+          "h": 9,
+          "i": "11",
+          "content": "ant-form"
+        },
+        {
+          "x": 0,
+          "y": 17,
+          "w": 12,
+          "h": 9,
+          "i": "6",
+          "content": "ele-transfer"
+        }
+      ]
+    },
+    {
+      "bizName": "专项业务",
+      "templateName": "数据组件专题",
+      "configs": [
+        {
+          "x": 6,
+          "y": 0,
+          "w": 6,
+          "h": 6,
+          "i": "4",
+          "content": "ele-tree"
+        },
+        {
+          "x": 0,
+          "y": 6,
+          "w": 12,
+          "h": 7,
+          "i": "9",
+          "content": "ant-table"
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 6,
+          "i": "10",
+          "content": "ant-tree"
+        },
+        {
+          "x": 0,
+          "y": 13,
+          "w": 12,
+          "h": 7,
+          "i": "3",
+          "content": "ele-table"
         }
       ]
     }
@@ -27,28 +135,42 @@
   "micro-service-modules": [
     {
       "module": "HelloDemo",
-      "name": "hello",
+      "name": "ele-hello",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
     },
     {
       "module": "CollapseDemo",
-      "name": "collapse",
+      "name": "ele-collapse",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
     },
     {
       "module": "TableDemo",
-      "name": "table",
+      "name": "ele-table",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
     },
     {
       "module": "TreeDemo",
-      "name": "tree",
+      "name": "ele-tree",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "FormDemo",
+      "name": "ele-form",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "TransferDemo",
+      "name": "ele-transfer",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"

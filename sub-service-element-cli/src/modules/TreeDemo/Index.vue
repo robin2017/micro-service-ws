@@ -1,16 +1,26 @@
 <template>
-    <el-tree
-            :data="treeData"
-            show-checkbox
-            node-key="id"
-            :default-expanded-keys="[2, 3]"
-            :default-checked-keys="[5]"
-            :props="defaultProps">
-    </el-tree>
+    <div>
+        <module-header content="element的tree组件"></module-header>
+        <div style="margin:10px;">
+            <span>数据来源：</span>
+            <span style="text-decoration: underline;color:blue;cursor:pointer"
+                  @click="openUrl">{{dataUrl}}</span>
+        </div>
+        <el-tree
+                :data="treeData"
+                show-checkbox
+                node-key="id"
+                :default-expanded-keys="[2, 3]"
+                :default-checked-keys="[5]"
+                :props="defaultProps">
+        </el-tree>
+    </div>
 </template>
 <script>
+    import ModuleHeader from "../../common/ModuleHeader";
     import httpUtil from '@http'
-
+    import {getRuntimeBaseUrl} from '@http/utils'
+    import host from '@http/host'
     export default {
         data() {
             return {
@@ -59,6 +69,19 @@
                     label: 'label'
                 }
             };
+        },
+        computed: {
+            dataUrl() {
+                return getRuntimeBaseUrl() + process.env.VUE_APP_BASE_API + host.treeList
+            }
+        },
+        components:{
+            ModuleHeader
+        },
+        methods: {
+            openUrl() {
+                window.open(this.dataUrl)
+            },
         },
         mounted() {
             httpUtil.getTreeList().then(data => {

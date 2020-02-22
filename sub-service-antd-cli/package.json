@@ -2,32 +2,99 @@
   "name": "sub-service-antd",
   "version": "0.1.0",
   "private": true,
-  "micro-service-templates": [
+  "micro-service-templates":  [
     {
-      "bizName": "业务一",
-      "templateName": "默认专题2",
+      "bizName": "ui业务",
+      "templateName": "antd组件专题",
       "configs": [
         {
-          "x": 4,
+          "x": 0,
+          "y": 12,
+          "w": 12,
+          "h": 9,
+          "i": "6",
+          "content": "ant-transfer"
+        },
+        {
+          "x": 7,
           "y": 0,
-          "w": 8,
-          "h": 5,
-          "content": "hello"
+          "w": 5,
+          "h": 6,
+          "i": 888,
+          "content": "ant-tree"
         },
         {
           "x": 0,
-          "y": 5,
+          "y": 6,
           "w": 12,
           "h": 6,
-          "content": "table"
+          "i": "5",
+          "content": "ant-form"
+        },
+        {
+          "x": 0,
+          "y": 27,
+          "w": 12,
+          "h": 6,
+          "i": 888,
+          "content": "ant-collapse"
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 6,
+          "content": "ant-hello"
+        },
+        {
+          "x": 0,
+          "y": 21,
+          "w": 12,
+          "h": 6,
+          "content": "ant-table"
         }
       ]
     }
   ],
   "micro-service-modules": [
     {
+      "module": "HelloDemo",
+      "name": "ant-hello",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "CollapseDemo",
+      "name": "ant-collapse",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
       "module": "TableDemo",
-      "name": "a-table",
+      "name": "ant-table",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "TreeDemo",
+      "name": "ant-tree",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "FormDemo",
+      "name": "ant-form",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "TransferDemo",
+      "name": "ant-transfer",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"

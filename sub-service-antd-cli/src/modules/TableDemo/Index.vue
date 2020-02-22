@@ -1,7 +1,12 @@
 <template>
     <div>
-        <h4>antd的表格如下</h4>
-        <a-table :columns="columns" :dataSource="data" bordered>
+        <module-header content="antd的table组件"></module-header>
+        <div style="margin:10px;">
+            <span>数据来源：</span>
+            <span style="text-decoration: underline;color:blue;cursor:pointer"
+                  @click="openUrl">{{dataUrl}}</span>
+        </div>
+        <a-table :columns="columns" :dataSource="tableData" bordered>
             <template slot="name" slot-scope="text">
                 <a href="javascript:;">{{text}}</a>
             </template>
@@ -23,48 +28,11 @@
         return obj;
     };
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            tel: '0571-22098909',
-            phone: 18889898989,
-            address: 'New York No. 1 Lake Park',
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            tel: '0571-22098333',
-            phone: 18889898888,
-            age: 42,
-            address: 'London No. 1 Lake Park',
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            tel: '0575-22098909',
-            phone: 18900010002,
-            address: 'Sidney No. 1 Lake Park',
-        },
-        {
-            key: '4',
-            name: 'Jim Red',
-            age: 18,
-            tel: '0575-22098909',
-            phone: 18900010002,
-            address: 'London No. 2 Lake Park',
-        },
-        {
-            key: '5',
-            name: 'Jake White',
-            age: 18,
-            tel: '0575-22098909',
-            phone: 18900010002,
-            address: 'Dublin No. 2 Lake Park',
-        },
-    ];
+
+    import ModuleHeader from "../../common/ModuleHeader";
+    import httpUtil from '@http'
+    import {getRuntimeBaseUrl} from '@http/utils'
+    import host from '@http/host'
 
     export default {
         data() {
@@ -72,23 +40,7 @@
                 {
                     title: 'Name',
                     dataIndex: 'name',
-                    customRender: (text, row, index) => {
-                        if (index < 4) {
-                            return
-                        <
-                            a
-                            href = "javascript:;" > {text} < /a>;
-                        }
-                        return {
-                            children: < a
-                        href = "javascript:;" > {text} < /a>,
-                        attrs: {
-                            colSpan: 5,
-                        }
-                    ,
-                    }
-                        ;
-                    },
+                    customRender:renderContent,
                 },
                 {
                     title: 'Age',
@@ -130,9 +82,28 @@
                 },
             ];
             return {
-                data,
+                tableData: [],
                 columns,
             };
         },
+        computed: {
+            dataUrl() {
+                return getRuntimeBaseUrl() + process.env.VUE_APP_BASE_API + host.tableList
+            }
+        },
+        methods: {
+            openUrl() {
+                window.open(this.dataUrl)
+            },
+        },
+        components: {
+            ModuleHeader
+        },
+        mounted() {
+            httpUtil.getTableList().then(data => {
+                console.log(data);
+                this.tableData = data;
+            })
+        }
     };
 </script>

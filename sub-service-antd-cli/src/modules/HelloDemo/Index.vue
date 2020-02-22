@@ -1,8 +1,8 @@
 <template>
     <section class="Index">
-        <module-header content="element的hello组件"></module-header>
+        <module-header content="antd的hello组件"></module-header>
         <div style="margin-left:10px;">
-            <h1>Hello,ElementUI</h1>
+            <h1>Hello,Ant-Design</h1>
             <h4>欢迎各位：</h4>
             <ul>
                 <li v-for="(info,index) in infoList" :key="index">
@@ -45,7 +45,7 @@
 </script>
 <style>
     .Index h1 {
-     color:#409eff;
+     color:#2f53ea;
     }
 </style>
 
