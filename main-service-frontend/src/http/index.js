@@ -8,13 +8,15 @@ export default {
      * 得到子服务列表,这个从自己的后端服务获取
      * */
     getServiceList() {
-        return Promise.resolve(mockServiceList)
+        return process.env.NODE_ENV === 'production' ?
+            get(host.serviceList)
+            : Promise.resolve(mockServiceList)
     },
 
     /**
      * 得到模版列表，这个从后端服务获取
      * */
-    getTemplateList(){
+    getTemplateList() {
         return Promise.resolve(mockTemplateList)
     },
 

@@ -1,7 +1,7 @@
 const path = require('path');
-
+const CopyOutputWebpackPlugin = require('copy-output-webpack-plugin');
 const resolve = dir => path.join(__dirname, dir);
-module.exports = {
+const vueConf = {
     publicPath: './',
     devServer: {
         open: true, // 是否打开浏览器
@@ -24,5 +24,21 @@ module.exports = {
         config.externals = {
             'vue': 'Vue',
         };
+        config.plugins.push(new CopyOutputWebpackPlugin({
+                from: path.resolve(__dirname, './dist'),
+                to: path.join(__dirname, '../main-service-backend/public'),
+                deleteBeforeCopyList: ["./static", "./index.html", "./favicon.ico"]
+            })
+        )
     }
 }
+// vueConf.configureWebpack(config => {
+//     config.plugins = [
+//         new CopyOutputWebpackPlugin({
+//             from: path.resolve(__dirname, './dist'),
+//             to: path.join(__dirname, '../main-service-backend/public'),
+//             deleteBeforeCopyList: ["./static", "./index.html", "./favicon.ico"]
+//         })
+//     ]
+// })
+module.exports = vueConf;

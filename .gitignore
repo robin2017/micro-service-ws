@@ -8,6 +8,7 @@ node_modules
 
 sub-service-antd-backend/public
 sub-service-element-backend/public
+main-service-backend/public
 
 
 
