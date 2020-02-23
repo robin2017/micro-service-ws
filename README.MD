@@ -9,6 +9,9 @@
 ## Live Demo
 http://68.168.137.218:3000/index.html
 
+## 架构图
+![image](./images/arch.png)
+
 ### 1、子服务
 ##### 脚手架
 > 基于@vue/cli4.1.1
