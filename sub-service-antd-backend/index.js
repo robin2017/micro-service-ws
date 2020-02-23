@@ -4,7 +4,7 @@ const Koa = require('koa');
 const staticCache = require('koa-static-cache');
 const router = require('koa-router');
 const cors = require('koa2-cors');
-const PORT = 3001;
+const PORT = 3002;
 const app = new Koa();
 
 const staticPath = './public';
