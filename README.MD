@@ -5,7 +5,7 @@
 
 
 
-![image](./demo/demo.gif)
+![image](http://68.168.137.218:3000/demo/demo.gif)
 ## Live Demo
 http://68.168.137.218:3000/index.html
 

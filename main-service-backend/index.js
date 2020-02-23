@@ -7,6 +7,7 @@ const cors = require('koa2-cors');
 const PORT = 3000;
 const app = new Koa();
 const staticPath = './public';
+const demoPath = './demo';
 const backendRouter = new router();
 //url为  http://localhost:12808/rest/testController/serviceList
 backendRouter.get('/rest/testController/serviceList', async (ctx) => {
@@ -15,6 +16,10 @@ backendRouter.get('/rest/testController/serviceList', async (ctx) => {
 app.use(cors());
 app.use(staticCache(path.join(__dirname, staticPath), {
     prefix: '/',
+    maxAge: 365 * 24 * 60 * 60
+}));
+app.use(staticCache(path.join(__dirname, demoPath), {
+    prefix: '/demo',
     maxAge: 365 * 24 * 60 * 60
 }));
 app.use(backendRouter.routes()).use(backendRouter.allowedMethods())
