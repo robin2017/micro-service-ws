@@ -19,5 +19,8 @@ http://68.168.137.218:3000/index.html
 
 
 参考资料
-+ 1、https://juejin.im/post/5d1d8d426fb9a07efe2dda40
-+ 2、https://alili.tech/archive/ea599f7c/
++ 1、阿里飞冰微前端:https://ice.work/docs/icestark/about
++ 2、sing-spa:https://single-spa.js.org/ 
++ 3、微前端如何落地?:https://juejin.im/post/5d1d8d426fb9a07efe2dda40
++ 4、前端微服务化解决方案:https://alili.tech/archive/ea599f7c/
++ 5、黄勇《前端架构：从入门到微前端》
