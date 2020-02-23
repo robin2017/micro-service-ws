@@ -38,7 +38,15 @@
         },
         computed: {
             dataUrl() {
-                return getRuntimeBaseUrl() + process.env.VUE_APP_BASE_API + host.treeList
+                let url = getRuntimeBaseUrl() + process.env.VUE_APP_BASE_API + host.treeList
+                const KEY = 'ant_tree'
+                const localUrl = window.localStorage.getItem(KEY);
+                if (localUrl) {
+                    url = localUrl
+                }else{
+                    window.localStorage.setItem(KEY,url)
+                }
+                return url;
             }
         },
         components: {

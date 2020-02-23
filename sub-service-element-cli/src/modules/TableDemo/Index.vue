@@ -62,7 +62,16 @@
         },
         computed: {
             dataUrl() {
-                return getRuntimeBaseUrl() + process.env.VUE_APP_BASE_API + host.tableList
+
+                let url = getRuntimeBaseUrl() + process.env.VUE_APP_BASE_API + host.tableList;
+                const KEY = 'ele_table'
+                const localUrl = window.localStorage.getItem(KEY);
+                if (localUrl) {
+                    url = localUrl
+                }else{
+                    window.localStorage.setItem(KEY,url)
+                }
+                return url;
             }
         },
         components: {
@@ -74,7 +83,6 @@
             },
         },
         mounted() {
-
             httpUtil.getTableList().then(data => {
                 console.log(data);
                 this.tableData = data;
