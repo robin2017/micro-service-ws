@@ -11,7 +11,7 @@ Vue.use(VueRouter)
 
 export const routes = [
     {
-        path: '/',
+        path: '/index',
         name: 'Index',
         redirect:'/userConfig',
         component: Index
@@ -30,7 +30,7 @@ export const routes = [
         label: '测试页面'
     },
     {
-        path: '/userConfig',
+        path: '/',
         name: 'UserConfig',
         component: UserConfig,
         label: '用户配置',

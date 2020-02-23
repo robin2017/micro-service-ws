@@ -11,15 +11,15 @@
                      background-color="#545c64"
                      text-color="#fff"
                      active-text-color="#ffd04b">
-                <el-menu-item index="/userConfig/moduleMgr">
+                <el-menu-item index="/moduleMgr">
                     <i class="el-icon-suitcase"></i>
                     <span slot="title">信息块管理</span>
                 </el-menu-item>
-                <el-menu-item index="/userConfig/templateMgr">
+                <el-menu-item index="/templateMgr">
                     <i class="el-icon-suitcase-1"></i>
                     <span slot="title">信息专题管理</span>
                 </el-menu-item>
-                <el-menu-item index="/userConfig/userMgr" disabled>
+                <el-menu-item index="/userMgr" disabled>
                     <i class="el-icon-user"></i>
                     <span slot="title">用户管理</span>
                 </el-menu-item>
@@ -39,7 +39,7 @@
         data() {
             return {
                 //默认子页面
-                activeIndex: '/userConfig/moduleMgr',
+                activeIndex: '/moduleMgr',
                 showPreview: false
             };
         },
@@ -68,7 +68,7 @@
                 })
             },
             handleMenuSelect(key, keyPath) {
-                if (key === "/userConfig/templateMgr") {
+                if (key === "/templateMgr") {
                     this.showPreview = true
                 } else {
                     this.showPreview = false
