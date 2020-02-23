@@ -9,13 +9,13 @@ const app = new Koa();
 
 const staticPath = './public';
 const backendRouter = new router();
-backendRouter.get('/ZHTEST/rest/testController/personList', async (ctx) => {
+backendRouter.get('/ZHTEST/rest/testController/ele_personList', async (ctx) => {
     ctx.body = fs.readFileSync(path.resolve(__dirname, './data/people.json'), 'utf-8');
 });
-backendRouter.get('/ZHTEST/rest/testController/treeList', async (ctx) => {
+backendRouter.get('/ZHTEST/rest/testController/ele_treeList', async (ctx) => {
     ctx.body = fs.readFileSync(path.resolve(__dirname, './data/tree.json'), 'utf-8');
 });
-backendRouter.get('/ZHTEST/rest/testController/tableList', async (ctx) => {
+backendRouter.get('/ZHTEST/rest/testController/ele_tableList', async (ctx) => {
     ctx.body = fs.readFileSync(path.resolve(__dirname, './data/table.json'), 'utf-8');
 });
 
