@@ -10,9 +10,8 @@
 http://68.168.137.218:3000/index.html
 
 ## 架构图
-![image](./images/arch.png)
-## 架构图2
-![avatar](./images/arch.png)
+![image](http://68.168.137.218:3000/demo/arch.png)
+
 
 ### 1、子服务
 ##### 脚手架
