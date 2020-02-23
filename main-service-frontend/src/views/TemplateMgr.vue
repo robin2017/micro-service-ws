@@ -94,7 +94,7 @@
                 <el-form-item label="业务名称" prop="bizName">
                     <el-input v-model="tempForm.bizName"></el-input>
                 </el-form-item>
-                <el-form-item label="模版名称" prop="tempName">
+                <el-form-item label="专题名称" prop="tempName">
                     <el-input v-model="tempForm.tempName"></el-input>
                 </el-form-item>
             </el-form>
@@ -170,8 +170,8 @@
                     console.log('layout change:', JSON.stringify(val))
                 }
             },
-            templateList(val){
-                console.log('---------templateList  change ------:',val)
+            templateList(val) {
+                console.log('---------templateList  change ------:', val)
             }
         },
         components: {
@@ -180,6 +180,10 @@
             draggable,
         },
         methods: {
+            ...mapMutations({
+                setBizName: 'setBizName',
+                setTemplateName: 'setTemplateName'
+            }),
             targetAdd(evt) {
                 debugger
                 console.log('00000010:', evt)
@@ -203,7 +207,6 @@
                 let curTemp = this.templateList.find(item => item.bizName === this.selectedItem.bizName)
                     .templates.find(item => item.tempName === this.selectedItem.tempName);
                 curTemp.configs = this.layout;
-                console.log('=======>', this.templateList)
             },
             formConfirm() {
                 this.$refs['tempForm'].validate((valid) => {
@@ -228,8 +231,10 @@
                         } else {//存在业务，不存在模版
                             bizItem.templates.push({tempName: this.tempForm.tempName, configs: []})
                         }
+                        this.addTemplateVisible = false
                         this.$message({type: 'success', message: '保存成功'});
                         //同时更新后端服务
+
                     } else {
                         console.log('error submit!!');
                         return false;
@@ -247,6 +252,8 @@
 
             },
             templateClick(biz, temp) {
+                this.setBizName(biz);
+                this.setTemplateName(temp);
                 this.selectedItem = {bizName: biz, tempName: temp}
                 console.log('====:', this.selectedItem);
                 const configs = this.templateList.find(item => item.bizName === biz)
@@ -386,6 +393,18 @@
 </style>
 <style lang="less">
     .template-mgr {
+        .middle-card {
+            & > .el-card__body {
+                padding:0;
+                padding-left: 10px;
+                overflow: auto;
+
+                .drag-target {
+                    padding-right: 10px;
+                }
+            }
+        }
+
         .el-card {
             display: flex;
             flex-direction: column;

@@ -1,32 +1,35 @@
 <template>
     <div class="user-display">
 
-        <h4>用户页面展示:业务:{{bizName}},模版:{{tempName}}</h4>
-        <div v-if="moduleConfigs.length===0" style="color:lightgrey;display: flex;justify-content: center;">未配置该模版
-        </div>
-        <grid-layout
-                :layout.sync="moduleConfigs"
-                :col-num="12"
-                :row-height="30"
-                :is-draggable="false"
-                :is-resizable="false"
-                :is-mirrored="false"
-                :vertical-compact="true"
-                :margin="[10, 10]"
-                :use-css-transforms="true">
-            <grid-item v-for="item in moduleConfigs"
-                       class="drag-grid-item"
-                       style="overflow:auto"
-                       :x="item.x"
-                       :y="item.y"
-                       :w="item.w"
-                       :h="item.h"
-                       :i="item.i"
-                       :key="item.i">
-                <component :is="item.compName"></component>
+        <h4>用户页面展示:业务:{{bizName}},专题:{{tempName}}</h4>
+        <div class="content">
+            <div v-if="moduleConfigs.length===0" style="color:lightgrey;display: flex;justify-content: center;">未配置该模版
+            </div>
+            <grid-layout
+                    :layout.sync="moduleConfigs"
+                    :col-num="12"
+                    :row-height="30"
+                    :is-draggable="false"
+                    :is-resizable="false"
+                    :is-mirrored="false"
+                    :vertical-compact="true"
+                    :margin="[10, 10]"
+                    :use-css-transforms="true">
+                <grid-item v-for="item in moduleConfigs"
+                           class="drag-grid-item"
+                           style="overflow:auto"
+                           :x="item.x"
+                           :y="item.y"
+                           :w="item.w"
+                           :h="item.h"
+                           :i="item.i"
+                           :key="item.i">
+                    <component :is="item.compName"></component>
 
-            </grid-item>
-        </grid-layout>
+                </grid-item>
+            </grid-layout>
+        </div>
+
     </div>
 </template>
 
@@ -98,11 +101,16 @@
     .user-display {
         h4 {
             margin: 10px;
+            background-color: lightcoral;
         }
 
         height: 100%;
         overflow: auto;
 
+        .content{
+            height:calc(100% - 50px);
+            overflow:auto;
+        }
         .drag-grid-item {
             border: 1px solid gray;
             position: relative;

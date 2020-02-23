@@ -47,7 +47,9 @@
 
             ...mapState({
                 moduleList: 'moduleList',
-                templateList: 'templateList'
+                templateList: 'templateList',
+                bizName: 'bizName',
+                templateName: 'templateName'
             })
         },
         watch: {
@@ -62,10 +64,13 @@
                 setTemplateList: 'setTemplateList'
             }),
             showPreviewClick() {
-                this.$router.push({
-                    path: '/userDisplay',
-                    query: {bizName: '业务一', tempName: '模版一'}
-                })
+                if (this.bizName.length !== 0 && this.templateName.length !== 0) {
+                    this.$router.push({
+                        path: '/userDisplay',
+                        query: {bizName: this.bizName, tempName: this.templateName}
+                    })
+                }
+
             },
             handleMenuSelect(key, keyPath) {
                 if (key === "/templateMgr") {
@@ -144,9 +149,14 @@
                                 bizName: '',
                                 compName: `ms-wc-${config.content}`
                             }
+
                             newTemp.configs.push(newConf)
                         }
-                        bizTemp.templates.push(newTemp)
+                        //防止专题重复
+                        if(!bizTemp.templates.find(item=>item.tempName===newTemp.tempName)){
+                            bizTemp.templates.push(newTemp)
+                        }
+
                     }
                 }
                 this.setTemplateList(templateList)
@@ -207,10 +217,14 @@
 </style>
 <style lang="less">
     .user-config {
+        .menu-body{
+            height:100px;//不知道为什么，必须这么设置？？？
+        }
         .el-menu--horizontal > .el-menu-item {
             height: 48px;
             line-height: 48px;
         }
+
     }
 </style>
 
