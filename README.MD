@@ -1,16 +1,16 @@
 ## 基于ws的微服务框架
 > 微服务框架有多种实现方式，这里采用web components技术来实现，其中分为主服务和子服务两个模块，下面分别进行开发
 ## Demo
-
-
-
-
 ![image](http://68.168.137.218:3000/demo/demo.gif)
+
 ## Live Demo
 http://68.168.137.218:3000/index.html
 
-## 架构图
-![image](http://68.168.137.218:3000/demo/arch.png)
+# 架构设计
+![image](http://68.168.137.218:3000/demo/design.png)
+
+## 流程结构
+![image](http://68.168.137.218:3000/demo/flu.png)
 
 
 ### 1、子服务
