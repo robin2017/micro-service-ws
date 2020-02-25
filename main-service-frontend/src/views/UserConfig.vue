@@ -144,7 +144,7 @@
                             let url = this.moduleList.find(item => item.moduleName === config.content).moduleUrl;
                             const newConf = {
                                 ...config,
-                                i: 888,
+                                i: Math.floor(Math.random()*1000),
                                 url,
                                 bizName: '',
                                 compName: `ms-wc-${config.content}`
