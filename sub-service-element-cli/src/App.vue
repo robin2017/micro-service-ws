@@ -2,7 +2,7 @@
     <test></test>
 </template>
 <script>
-    import Test from '@m/FormDemo/Index.vue'
+    import Test from '@m/ConcurrentDemo/Index.vue'
     export default {
         name: 'app',
         components: {

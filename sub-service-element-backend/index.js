@@ -18,6 +18,19 @@ backendRouter.get('/ZHTEST/rest/testController/ele_treeList', async (ctx) => {
 backendRouter.get('/ZHTEST/rest/testController/ele_tableList', async (ctx) => {
     ctx.body = fs.readFileSync(path.resolve(__dirname, './data/table.json'), 'utf-8');
 });
+//http://localhost:3001/ZHTEST/rest/testController/con1
+backendRouter.get('/ZHTEST/rest/testController/con1', async (ctx) => {
+    ctx.body = fs.readFileSync(path.resolve(__dirname, './data/concurrentData.json'), 'utf-8');
+});
+backendRouter.get('/ZHTEST/rest/testController/con2', async (ctx) => {
+    ctx.body = fs.readFileSync(path.resolve(__dirname, './data/concurrentData.json'), 'utf-8');
+});
+backendRouter.get('/ZHTEST/rest/testController/con3', async (ctx) => {
+    ctx.body = fs.readFileSync(path.resolve(__dirname, './data/concurrentData.json'), 'utf-8');
+});
+backendRouter.get('/ZHTEST/rest/testController/con4', async (ctx) => {
+    ctx.body = fs.readFileSync(path.resolve(__dirname, './data/concurrentData.json'), 'utf-8');
+});
 
 app.use(cors());
 app.use(staticCache(path.join(__dirname, staticPath), {

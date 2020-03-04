@@ -10,5 +10,17 @@ export default {
     },
     getTreeList: function () {
         return get(host.treeList)
+    },
+    getCon1: function () {
+        return get(host.conTest1)
+    },
+    getCon2: function () {
+        return get(host.conTest2)
+    },
+    getCon3: function () {
+        return get(host.conTest3)
+    },
+    getCon4: function () {
+        return get(host.conTest4)
     }
 }
