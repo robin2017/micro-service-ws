@@ -2,7 +2,7 @@
   "name": "sub-service-antd",
   "version": "0.1.0",
   "private": true,
-  "micro-service-templates":  [
+  "micro-service-templates": [
     {
       "bizName": "ui业务",
       "templateName": "antd组件专题",

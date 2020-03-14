@@ -10,7 +10,6 @@
                 </li>
             </ul>
         </div>
-
     </section>
 </template>
 <script>
@@ -27,9 +26,6 @@
             ModuleHeader
         },
         methods: {
-            btnClick(){
-                console.log('btn click')
-            },
             getInfo() {
                 httpUtil.getPersonList().then(data => {
                     console.log(data);
@@ -38,7 +34,6 @@
             }
         },
         mounted() {
-            console.log('mounted');
             this.getInfo()
         }
     }
