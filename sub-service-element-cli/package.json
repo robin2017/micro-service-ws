@@ -21,7 +21,7 @@
           "w": 5,
           "h": 6,
           "i": 888,
-          "content": "ele-tree"
+          "content": "ele-global"
         },
         {
           "x": 0,
@@ -136,6 +136,13 @@
     {
       "module": "HelloDemo",
       "name": "ele-hello",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "GlobalDemo",
+      "name": "ele-global",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
