@@ -1,6 +1,6 @@
 <template>
     <section class="Index">
-        <module-header content="element的global组件"></module-header>
+        <module-header content="element的global2组件"></module-header>
         <div style="margin-left:10px;">
             <div style="margin:10px;">
                 <el-button type="primary" @click="openDialog">对话框</el-button>
@@ -11,7 +11,7 @@
             <div style="margin:10px;">
                 <el-button type="primary" @click="sendEventBus">消息总线</el-button>
             </div>
-            <el-dialog class="robin-test-dialog"
+            <el-dialog class="robin-test2-dialog"
                        :append-to-body="true"
                        title="提示(子应用修改全局样式)"
                        :visible.sync="dialogVisible"
@@ -40,9 +40,9 @@
             dialogVisible(val) {
                 if (val) {
                     this.$nextTick(_ => {
-                        let header = document.querySelector('.robin-test-dialog .el-dialog__header .el-dialog__title');
+                        let header = document.querySelector('.robin-test2-dialog .el-dialog__header .el-dialog__title');
                         console.log('找到header元素：', header)
-                        header.style.color = 'red'
+                        header.style.color = 'blue'
                     })
                 }
             }
@@ -55,10 +55,10 @@
                 this.dialogVisible = true
             },
             sendMsg() {
-                this.$message.warn('这是子应用global弹出的全局消息提示');
-                // this.$nextTick(_=>{
-                //   const dom=  document.querySelector('.ant-message-notice-content');
-                //   dom.style.backgroundColor = 'red'
+                this.$message.warn('这是子应用global2弹出的全局消息提示')
+                // this.$nextTick(_ => {
+                //     const dom = document.querySelector('.ant-message-notice-content');
+                //     dom.style.backgroundColor = 'blue'
                 // })
             },
             sendEventBus() {

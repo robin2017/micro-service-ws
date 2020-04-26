@@ -21,7 +21,7 @@
           "w": 5,
           "h": 6,
           "i": 888,
-          "content": "ele-global"
+          "content": "ele-tree"
         },
         {
           "x": 0,
@@ -130,6 +130,42 @@
           "content": "ele-table"
         }
       ]
+    },
+    {
+      "bizName": "微前端方案测试",
+      "templateName": "方案测试",
+      "configs": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 6,
+          "content": "ele-hello"
+        },
+        {
+          "x": 7,
+          "y": 0,
+          "w": 5,
+          "h": 6,
+          "i": 888,
+          "content": "ele-global"
+        },
+        {
+          "x": 0,
+          "y": 6,
+          "w": 7,
+          "h": 6,
+          "content": "ele-global2"
+        },
+        {
+          "x": 7,
+          "y": 6,
+          "w": 5,
+          "h": 6,
+          "i": 888,
+          "content": "ele-router"
+        }
+      ]
     }
   ],
   "micro-service-modules": [
@@ -141,8 +177,22 @@
       "description": "测试模块"
     },
     {
+      "module": "RouterDemo",
+      "name": "ele-router",
+      "entry": "index.js",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
       "module": "GlobalDemo",
       "name": "ele-global",
+      "entry": "Index.vue",
+      "version": "0.0.1",
+      "description": "测试模块"
+    },
+    {
+      "module": "Global2Demo",
+      "name": "ele-global2",
       "entry": "Index.vue",
       "version": "0.0.1",
       "description": "测试模块"
